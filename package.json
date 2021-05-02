@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "snowpack dev",
-    "build": "mv docs/CNAME CNAME && rm -rf docs && snowpack build && touch build/.nojekyll && mv build docs && mv CNAME docs/CNAME",
+    "build": "mv docs/CNAME docs/CNAME && rm -rf docs && snowpack build && touch build/.nojekyll && mv build docs && mv CNAME docs/CNAME",
     "test": "jest",
     "lint": "eslint *.js --fix"
   },

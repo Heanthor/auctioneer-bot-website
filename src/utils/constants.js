@@ -1,3 +1,8 @@
+export const PAGE_NAMES = {
+    AUCTION_BOT: "Auction Bot",
+    WEB_TOOL: "Web Tool"
+};
+
 export const regions = [
     {label: "US", value: "US"},
     {label: "EU", value: "EU"},

@@ -10,19 +10,23 @@ body {
 }
 
 .discord-st0 {
-    fill: #a78bfa;
+    fill: #fff;
 }
-
 
 hr.styled-hr {
     border-top: 1px solid #0f131a;
 }
 
-.nav-link {
+a.nav-link {
     transition: 0.3s;
     &:hover {
         color: rgba(255,255,255,0.8)
     }
+}
+
+/* Disabled link */
+div.nav-link {
+    cursor: default;
 }
 
 .nav-link.nav-link-hamburger {
@@ -31,9 +35,50 @@ hr.styled-hr {
     }
 }
 
+.nav-link-container-active .nav-link.nav-link-hamburger {
+    background: #06080e;
+    color: #9ca3af;
+    cursor: default;
+}
+
 .bg-header {
     background-color: #0b0f19;
 }
+
+
+.hero-button-container {
+
+    > div {
+        margin-bottom: 1rem;
+        min-width: 209px;
+    }
+
+    .hero-button-white {
+        background: #fff;
+        color: #5a20b6;
+        font-weight: 500;
+        transition: 0.3s;
+        &:hover,
+        &:focus {
+            background: #ccc;
+        }
+    }
+    
+    .hero-button-discord {
+        color: #fff;
+        background: #5662f6;
+        border: none;
+        transition: 0.3s;
+        &:hover,
+        &:focus {
+            background: #6e77f7;
+            outline: none;
+        }
+        
+    }
+}
+
+
 
 .app-burger {
     .bm-burger-button {
@@ -83,7 +128,7 @@ hr.styled-hr {
     }
     
     .bm-item-list {
-        color: #b8b7ad;
+        color: #fff;
         padding: 0.8em 0;
     }
     

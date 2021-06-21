@@ -12,31 +12,17 @@ const WebTool = () => {
         <>
             <Header pageName={PAGE_NAMES.WEB_TOOL} classNames="bg-header" />
 
-            <section className="text-gray-400 bg-gray-900 body-font pt-8">
-                <div className="container px-5 pt-5 mx-auto lg:w-3/4 xl:w-3/5 2xl:w-1/2 mb-16">
-                    
-                    <h2 className="text-white title-font font-medium mb-3 capitalize text-3xl mb-5">
-                        Buyer's Guide Web Tool
-                    </h2>
-
+            <section className="web-tool-container text-gray-400 bg-gray-900 body-font pt-8 xl:pt-0">
+                <div className="container xl:w-100 px-5 xl:px-0 pt-5 xl:pt-0 mx-auto xl:mx-0 lg:w-3/4 mb-16 xl:mb-0 xl:flex">
                     <SearchForm />
 
-                    <div className="item-tree sm:pl-3 md:pl-3 lg:pl-6 mt-8">
-                        
+                    <div className="item-tree sm:pl-3 md:pl-3 lg:pl-6 mt-8 pb-16 xl:flex-auto">  
                         <RecipeBuilder />
-
-                        {/*
-
-                        <h2 className="text-white font-semibold">id=178926 </h2>
-                        <Recipe data={treeData2} key="ring" id="456"/>
-                        
-                        */}
                     </div>
                 </div>
-
-                <Footer />
-                
             </section>
+
+            <Footer />
         </>
     );
 }

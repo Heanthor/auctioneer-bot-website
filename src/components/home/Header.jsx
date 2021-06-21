@@ -8,7 +8,7 @@ const Header = props => {
     const {pageName, classNames} = props;
 
     return (
-        <header className={`${classNames ? classNames + ' ' : ''}text-gray-500 body-font shadow-2xl`}>
+        <header className={`${classNames ? classNames + ' ' : ''}text-gray-500 body-font`}>
             <div className="container mx-auto flex flex-wrap  flex-col md:flex-row items-center">
                 <div className="flex title-font w-full font-medium items-center text-white justify-between pr-8">
                     <div className="flex items-center">

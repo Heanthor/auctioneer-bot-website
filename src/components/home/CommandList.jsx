@@ -5,7 +5,7 @@ import bgCommandImage from '../../resources/bg+.png';
 /* Renders a section explaining how to use the discord bot */
 const CommandList = () => {
     return (
-        <section className="text-gray-400 bg-gray-900 body-font pt-8">
+        <section className="text-gray-400 bg-flavor body-font pt-16">
             <div className="md:w-2/3 w-full mx-auto">
                 <div className="container px-3 pb-6 mx-auto flex flex-wrap">
                     <div className="w-full xl:w-2/3">

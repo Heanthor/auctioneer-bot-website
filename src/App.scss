@@ -140,3 +140,49 @@ div.nav-link {
         background: rgba(0, 0, 0, 0.3);
     }
 }
+
+.flavor-container {
+    @media screen and (max-width: 1279px) {
+        bottom: -23px;
+    }
+    @media screen and (min-width: 1280px) {
+        bottom: -23px;
+    }
+    
+}
+
+.bg-flavor {
+    background-color: #101623;
+}
+
+.results-placeholder-container {
+    flex: 1 1 auto;
+    
+    .placeholder-content {
+        position: relative;
+        bottom: -13%;
+    }
+
+    .placeholder-flavor {
+        background-color: #111827;
+        background-image:url('./resources/waves-sm.svg');
+        
+        @media screen and (max-width: 1279px) {
+            height: 155px;
+        }
+        @media screen and (min-width: 1280px) {
+            height: 190px;
+        }
+        
+    }
+
+    .placeholder-flavor-head {
+        height: 4rem;
+        background-color: #111827;
+    }
+
+    .placeholder-filler {
+        flex: 1 1 auto;
+        background-color: #101623;
+    }
+}

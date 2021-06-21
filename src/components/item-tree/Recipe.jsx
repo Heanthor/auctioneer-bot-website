@@ -52,7 +52,7 @@ const Recipe = props => {
     }
 
     return (
-        <div>
+        <div className="xl:pt-8 xl:pl-8">
             <Tree
                 {...required}
                 {...handlers}

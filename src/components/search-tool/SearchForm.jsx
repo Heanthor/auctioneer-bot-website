@@ -7,6 +7,7 @@ import {
     twServers,
     krServers
 } from '../../utils/constants';
+import {getBuyersGuidePlus} from '../../service/buyers-guide-service';
 
 /* Customization (theming) for react-select */
 const customStyles = {
@@ -48,21 +49,24 @@ const customStyles = {
     })
 };
 
-/* Retrieve preferences from Local Storage */
-const getPreferences = () => {
-    try {
-        let stringifiedPreferences = window.localStorage.getItem('webToolPreferences') || {};
-        return JSON.parse(stringifiedPreferences);
-    } catch { return {} }
-}
-
-const SearchTool = () => {
-    const preferences = getPreferences();
+const SearchTool = props => {
     
-    const [regionSelection, setRegionSelection] = React.useState(preferences.preferredRegion || {label: "US", value: "US"});
-    const [serverSelection, setServerSelection] = React.useState(preferences.preferredServer || undefined);
-    const [modeSelection, setModeSelection] = React.useState(preferences.preferredMode || "p");
-    const [searchQuery, setSearchQuery] = React.useState("");
+    const {
+        regionSelection,
+        setRegionSelection,
+        serverSelection,
+        setServerSelection,
+        modeSelection,
+        setModeSelection,
+        searchQuery,
+        setSearchQuery,
+        setLoading,
+        setResponse,
+        setErrored,
+        loading
+    } = props;
+    
+    
     const [invalidSearchAttempted, setInvalidSearchAttempted] = React.useState(false);
 
     const serverOptions = () => {
@@ -82,7 +86,24 @@ const SearchTool = () => {
 
     const handleSearchClick = event => {
         if (regionSelection && serverSelection && modeSelection && searchQuery) {
-            console.log("search!")
+            
+            /* Clear the currently stored API response */
+            setResponse(null);
+            
+            const formValues = {
+                regionSelection,
+                serverSelection,
+                modeSelection,
+                searchQuery
+            };
+
+            const serviceMeta = {
+                setLoading,
+                setResponse,
+                setErrored
+            };
+
+            getBuyersGuidePlus(formValues, serviceMeta);
 
             // Reset form validation
             setInvalidSearchAttempted(false);
@@ -105,9 +126,9 @@ const SearchTool = () => {
 
     return (
         <div className="search-form w-full">
-            <form autocomplete="off" className="px-8 pt-6 pb-8 mb-4" onSubmit={handleSearchClick}>
+            <form autoComplete="off" className="px-8 pt-6 pb-8 mb-4" onSubmit={handleSearchClick}>
         
-                <input autocomplete="false" name="hidden" type="text" style={{display:'none'}} />
+                <input autoComplete="false" name="hidden" type="text" style={{display:'none'}} />
                 <input type="submit" style={{display:'none'}} />
 
                 {/* Mode Select (radio group) */}
@@ -189,7 +210,7 @@ const SearchTool = () => {
                     </label>
                     <div className="flex">
                         <div className="search-icon-container">
-                            <i class="fas fa-search" />
+                            <i className="fas fa-search" />
                         </div>
                         <input
                             className="search-query w-full"
@@ -211,6 +232,7 @@ const SearchTool = () => {
                         type="button"
                         className="search-button inline-flex text-white bg-purple-700 border-0 px-6 focus:outline-none hover:bg-purple-600 rounded h-12 content-center flex justify-center mr-3"
                         onClick={handleSearchClick}
+                        disabled={loading}
                     >
                         <p className="my-auto">Search</p>
                     </button>

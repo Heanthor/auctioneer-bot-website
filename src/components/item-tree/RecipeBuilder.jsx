@@ -1,5 +1,4 @@
 import React from 'react'
-import {/*mockShadowghastRing, */mockBountiful} from '../../mockData';
 import Recipe from './Recipe';
 
 
@@ -73,23 +72,76 @@ const buildTree = data => {
 
 const RecipeBuilder = props => {
     let [builtTree, setBuiltTree] = React.useState(null);
-    let renderedTree = <div />;
+    let content = <div />;
     let builtTreeInfo;
 
-    if (!builtTree) {
-        // TODO: Call the API here
-        let response = mockBountiful;
+    const {
+        loading,
+        errored,
+        response
+    } = props;
 
+    if (response && !errored && !loading && !builtTree) {
         // Build the tree from the API response
         builtTreeInfo = buildTree(response);
         setBuiltTree(builtTreeInfo);
     }
 
-    if (builtTree) {
-        renderedTree = <Recipe data={builtTree.formattedTree} key="bounty" recipeId="recipe_tree" itemsCount={builtTree.itemsCount} />;
+    
+    if (!response && !loading && !errored) {
+        /* user has not executed a search yet */
+        content = (
+            <div className="w-full results-placeholder-container hidden xl:flex xl:flex-col">
+                <div className="placeholder-flavor-head" />
+                <div className="placeholder-flavor w-full" />
+                <div className="placeholder-filler w-full flex justify-center" />
+            </div>
+        );
+    } else if (!response && loading && !errored) {
+        /* request is loading */
+        content = (
+            <div className="w-full results-placeholder-container hidden xl:flex xl:flex-col">
+                <div className="placeholder-flavor-head" />
+                <div className="placeholder-flavor w-full" />
+                <div className="placeholder-filler w-full flex justify-center pt-16">
+                    <div className="flex flex-col">
+                        <div className="flex justify-center">
+                            <div className="sk-chase">
+                                <div className="sk-chase-dot"></div>
+                                <div className="sk-chase-dot"></div>
+                                <div className="sk-chase-dot"></div>
+                                <div className="sk-chase-dot"></div>
+                                <div className="sk-chase-dot"></div>
+                                <div className="sk-chase-dot"></div>
+                            </div>
+                        </div>
+                        <div className="flex justify-center mt-8 text-xl">
+                            Loading ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    } else if (response && !errored && !loading && builtTree) {
+        content = (
+            <>
+                <div className="absolute w-full">
+                    <div className="results-placeholder-container hidden xl:flex xl:flex-col">
+                        <div className="placeholder-flavor-head" />
+                        <div className="placeholder-flavor w-full" />
+                    </div>
+                </div>
+                <Recipe
+                    data={builtTree.formattedTree}
+                    key={/* TODO: Unique Recipe ID*/ ""}
+                    recipeId="recipe_tree"
+                    itemsCount={builtTree.itemsCount}
+                />
+            </>
+        );
     }
 
-    return renderedTree;
+    return content;
 }
 
 export default RecipeBuilder;

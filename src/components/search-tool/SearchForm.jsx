@@ -26,7 +26,8 @@ const customStyles = {
     }),
     menu: base => ({
       ...base,
-      color: '#000'
+      color: '#000',
+      zIndex: 3
     }),
     menuList: base => ({
       ...base,

@@ -177,10 +177,25 @@ hr.custom {
     border: none;
 }
 
-.search-form {
+.web-tool-container {
+    @media only screen and (min-width: 1280px) {
+        min-height: calc(100vh - 201px);
+        display: flex;
+    }
+}
 
-    border: 1px solid #1f2c47;
-    border-radius: 6px;
+.search-form {
+    @media only screen and (max-width: 1279px) {
+        border: 1px solid #1f2c47;
+        border-radius: 6px;
+    }
+
+    @media only screen and (min-width: 1280px) {
+        border-right: 1px solid #1f2c47;
+        max-width: 540px;
+        min-width: 540px;
+    }
+    
     background-color: #141c2e;
 
     button.search-button {

@@ -13,11 +13,30 @@ const Footer = () => {
                 </span>
                 <div className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4 flex">
                     <div>© 2018-2021 Made with <span style={{color: '#DC2626'}}>❤</span> by</div>
-                    <a className="hover:underline text-purple-300 ml-1" href="https://github.com/Heanthor">Reed</a>
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline text-purple-300 ml-1"
+                        href="https://github.com/Heanthor"
+                    >Reed</a>
                     <span className="mr-1.5">,</span>
-                    <a className="hover:underline text-purple-300" href="https://github.com/unlockedSound">David</a>
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline text-purple-300"
+                        href="https://github.com/unlockedSound"
+                    >
+                        David
+                    </a>
                     <span className="mr-1.5">, and</span>
-                    <a className="hover:underline text-purple-300" href="https://github.com/toup162">Matt</a>     
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline text-purple-300"
+                        href="https://www.reddit.com/user/completely_appalled"
+                    >
+                        Matt
+                    </a>     
                 </div>
             </div>
         </footer>

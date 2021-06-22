@@ -1,5 +1,4 @@
 import React from 'react';
-import MoneyAndCoins from '../../resources/money_and_coins.png'
 import {Link} from 'react-router-dom';
 import Feature from '../utility/Feature';
 

@@ -15,7 +15,7 @@ export const getDismissedNewsItems = () => {
 /* Add the ID of a news item to localStorage to indicate that it has been dismissed (to not show it again) */
 export const dismissNewsItem = id => {
     let parsedDismissedNews;
-    let dismissedNewsString = window.localStorage.getItem('buyersGuideNewsDismissed') || '';
+    let dismissedNewsString = window.localStorage.getItem('buyersGuideNewsDismissed') || '[]';
     
     try {
         parsedDismissedNews = JSON.parse(dismissedNewsString);

@@ -1,6 +1,6 @@
 .item-tree {
     @media only screen and (max-width: 1279px) {
-        width: 600px;
+        max-width: 600px;
     }
 
     @media only screen and (min-width: 1280px) {
@@ -417,3 +417,29 @@ hr.custom {
     }
 }
 
+.multiple-results-container {
+    button.results-item-button {
+        margin-top: 3px;
+        transition: 0.3s;
+        padding: 0 4px;
+        border-radius: 3px;
+        &:hover, &:focus {
+            background: #253350;
+            outline: none;
+        }
+
+        /* Maybe use the item's rarity somehow? */
+        /*
+        &.rarity-1 {
+            color: white;
+        }
+        &.rarity-2 {
+            color: green;
+        }
+        &.rarity-3 {
+            color: blue;
+        }
+        */
+    }
+    
+}

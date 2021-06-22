@@ -1,20 +1,9 @@
 import React from 'react';
 import Item from './Item';
 import Tree, { useTreeState } from 'react-hyper-tree';
-import {  MinusCircleIcon } from '@heroicons/react/outline';
-import {  PlusCircleIcon } from '@heroicons/react/solid'
-
-/* Traverses the tree to find an item's Node, given the item's ID */
-const findTreeObject = (items, id) => {
-    if (!items) { return; }
-  
-    for (const item of items) {
-      if (item.id === id) { return item; }
-  
-      const child = findTreeObject(item.children, id);
-      if (child) { return child; }
-    }
-  }
+import {MinusCircleIcon} from '@heroicons/react/outline';
+import {PlusCircleIcon} from '@heroicons/react/solid'
+import {findTreeObject} from '../../utils/item-utils';
 
 /* Renders a 'tree' of items for a recipe */
 const Recipe = props => {

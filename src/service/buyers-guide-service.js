@@ -1,8 +1,13 @@
 
-import {mockBountiful} from '../mockData'
+import {mockBountifulResponse, mockTruncatedResponse} from '../mockData'
+
+const mockApiCall = (t, v) => {
+    return new Promise(function(resolve) { 
+        setTimeout(resolve.bind(null, v), t)
+    });
+ }
 
 export const getBuyersGuidePlus = (formValues, serviceMeta) => {
-    
     /* eslint-disable no-unused-vars */
     const {
         regionSelection,
@@ -21,8 +26,13 @@ export const getBuyersGuidePlus = (formValues, serviceMeta) => {
     setLoading(true);
     
     /* TODO: call the API */
-    setTimeout(() => {
-        setLoading(false);
-        setResponse(mockBountiful);
-    }, 2500);
+
+    mockApiCall(2500, mockTruncatedResponse)
+        .then(response => {
+            setResponse(response);
+        }).catch(error => {
+            setErrored(error);
+        }).finally(() => {
+            setLoading(false);
+        })
 }

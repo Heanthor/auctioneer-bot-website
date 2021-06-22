@@ -7,7 +7,6 @@ import {
     twServers,
     krServers
 } from '../../utils/constants';
-import {getBuyersGuidePlus} from '../../service/buyers-guide-service';
 
 /* Customization (theming) for react-select */
 const customStyles = {
@@ -32,7 +31,6 @@ const customStyles = {
     }),
     menuList: base => ({
       ...base,
-      // kill the white space on first and last option
       padding: 0
     }),
     singleValue: base => ({
@@ -60,15 +58,11 @@ const SearchTool = props => {
         setModeSelection,
         searchQuery,
         setSearchQuery,
-        setLoading,
-        setResponse,
-        setErrored,
-        loading
+        loading,
+        handleSearch,
+        invalidSearchAttempted
     } = props;
     
-    
-    const [invalidSearchAttempted, setInvalidSearchAttempted] = React.useState(false);
-
     const serverOptions = () => {
         let regionMap = {
             "US": usServers,
@@ -84,37 +78,6 @@ const SearchTool = props => {
         setServerSelection(null)
     }
 
-    const handleSearchClick = event => {
-        if (regionSelection && serverSelection && modeSelection && searchQuery) {
-            
-            /* Clear the currently stored API response */
-            setResponse(null);
-            
-            const formValues = {
-                regionSelection,
-                serverSelection,
-                modeSelection,
-                searchQuery
-            };
-
-            const serviceMeta = {
-                setLoading,
-                setResponse,
-                setErrored
-            };
-
-            getBuyersGuidePlus(formValues, serviceMeta);
-
-            // Reset form validation
-            setInvalidSearchAttempted(false);
-        } else {
-            /* Something's wrong with the user input, trigger field validation where necessary */
-            setInvalidSearchAttempted(true);
-        }
-
-        event.preventDefault();
-    }
-
     /* Store Region/Server/Mode selection in Local Storage */
     React.useEffect(() => {
         window.localStorage.setItem('webToolPreferences', JSON.stringify({
@@ -122,11 +85,18 @@ const SearchTool = props => {
             preferredServer: serverSelection,
             preferredMode: modeSelection
         }))
-     }, [regionSelection, serverSelection, modeSelection]);
+    }, [regionSelection, serverSelection, modeSelection]);
+
+    React.useEffect(() => {
+        if (document?.activeElement?.id !== "search-query-input") {
+            let searchQueryInputElement = document.getElementById("search-query-input");
+            searchQueryInputElement.value = searchQuery;
+        }
+    }, [searchQuery]);
 
     return (
         <div className="search-form w-full">
-            <form autoComplete="off" className="px-8 pt-6 pb-8 mb-4" onSubmit={handleSearchClick}>
+            <form autoComplete="off" className="px-8 pt-6 pb-8 mb-4" onSubmit={handleSearch}>
         
                 <input autoComplete="false" name="hidden" type="text" style={{display:'none'}} />
                 <input type="submit" style={{display:'none'}} />
@@ -139,7 +109,14 @@ const SearchTool = props => {
                     <div className="radio-selection">
                         <section>
                             <div>
-                                <input type="radio" id="control_01" name="select-mode" value="1" checked={modeSelection === "p"} onChange={() => setModeSelection("p")} />
+                                <input
+                                    type="radio"
+                                    id="control_01"
+                                    name="select-mode"
+                                    value="1"
+                                    checked={modeSelection === "p"}
+                                    onChange={() => setModeSelection("p")}
+                                />
                                 <label htmlFor="control_01">
                                     <div className="font-semibold">Price Report</div>
                                     <div className="radio-subtext">
@@ -147,8 +124,16 @@ const SearchTool = props => {
                                     </div>
                                 </label>
                             </div>
+
                             <div>
-                                <input type="radio" id="control_02" name="select-mode" value="2" checked={modeSelection === "bg"} onChange={() => setModeSelection("bg")}/>
+                                <input
+                                    type="radio"
+                                    id="control_02"
+                                    name="select-mode"
+                                    value="2"
+                                    checked={modeSelection === "bg"}
+                                    onChange={() => setModeSelection("bg")}
+                                />
                                 <label htmlFor="control_02">
                                     <div className="font-semibold">Buyer's Guide</div>
                                     <div className="radio-subtext">
@@ -175,7 +160,6 @@ const SearchTool = props => {
                             options={regions}
                             value={regionSelection}
                             onChange={handleRegionChange}
-
                         />
                     </div>
                     <div className="flex-1">
@@ -206,7 +190,7 @@ const SearchTool = props => {
                 {/* Search Input */}
                 <div className="mb-4">
                     <label className="block text-white text-xl font-bold mb-2" htmlFor="search-query">
-                        Search Query
+                        Item Name/ID
                     </label>
                     <div className="flex">
                         <div className="search-icon-container">
@@ -214,6 +198,7 @@ const SearchTool = props => {
                         </div>
                         <input
                             className="search-query w-full"
+                            id="search-query-input"
                             type="text"
                             name="search-query"
                             onChange={e => setSearchQuery(e.target.value)}
@@ -221,7 +206,7 @@ const SearchTool = props => {
                     </div>
                     <div className="field-validation-container text-red">
                         {invalidSearchAttempted && !searchQuery && 
-                            <div>Provide a Search Query.</div>
+                            <div>Provide an Item Name/ID.</div>
                         }
                     </div>
                 </div>
@@ -231,7 +216,7 @@ const SearchTool = props => {
                     <button
                         type="button"
                         className="search-button inline-flex text-white bg-purple-700 border-0 px-6 focus:outline-none hover:bg-purple-600 rounded h-12 content-center flex justify-center mr-3"
-                        onClick={handleSearchClick}
+                        onClick={handleSearch}
                         disabled={loading}
                     >
                         <p className="my-auto">Search</p>

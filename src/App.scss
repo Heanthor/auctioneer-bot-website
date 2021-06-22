@@ -164,16 +164,15 @@ div.nav-link {
     }
 
     .placeholder-flavor {
-        background-color: #111827;
-        background-image:url('./resources/waves-stroked.svg');
-        
+        background-color: #111827;        
         @media screen and (max-width: 1279px) {
             height: 155px;
+            background-image:url('./resources/waves-stroked-sm.svg');
         }
         @media screen and (min-width: 1280px) {
             height: 190px;
+            background-image:url('./resources/waves-stroked.svg');
         }
-        
     }
 
     .placeholder-flavor-head {

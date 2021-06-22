@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Landing from './components/pages/Landing';
 import WebTool from './components/pages/WebTool';
-import Feature from './components/utility/Feature';
 import featureFlags from './utils/feature-flags';
 
 import {

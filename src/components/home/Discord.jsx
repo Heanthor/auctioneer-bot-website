@@ -15,7 +15,7 @@ const Discord = () => {
             </div>
             <section className="text-gray-400 body-font relative">
                 <div className="container px-5 pt-5 mx-auto flex flex-wrap md:w-2/3">
-                    <div className="flex flex-col flex-wrap lg:py-6 text-center md:mx-auto">
+                    <div className="flex flex-col flex-wrap py-6 text-center md:mx-auto">
                         <div className="flex flex-col pb-8 lg:items-start items-center">
                             <div className="flex-grow">
                                 <h2 className="text-white text-lg title-font font-medium mb-3 capitalize text-5xl">the best price every

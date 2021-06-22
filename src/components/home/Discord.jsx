@@ -1,6 +1,7 @@
 import React from 'react';
 import MoneyAndCoins from '../../resources/money_and_coins.png'
 import {Link} from 'react-router-dom';
+import Feature from '../utility/Feature';
 
 /* Renders a hero section describing Buyer's Guide */
 const Discord = () => {
@@ -34,15 +35,16 @@ const Discord = () => {
                                         </a>
                                     </div>
 
-
-                                    <div className="mx-2">
-                                        <Link to="/web-tool" className="focus:outline-none text-white bg-purple-700 border-0 px-6 hero-button-white focus-within:bg-purple-600 hover:bg-purple-600 rounded h-12 content-center flex justify-center">
-                                            <div className="my-auto">
-                                            <i className="fa fa-stream mr-2" />
-                                            Try the Web Tool
-                                            </div>
-                                        </Link>
-                                    </div>
+                                    <Feature name="webTool">
+                                        <div className="mx-2">
+                                            <Link to="/web-tool" className="focus:outline-none text-white bg-purple-700 border-0 px-6 hero-button-white focus-within:bg-purple-600 hover:bg-purple-600 rounded h-12 content-center flex justify-center">
+                                                <div className="my-auto">
+                                                <i className="fa fa-stream mr-2" />
+                                                Try the Web Tool
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </Feature>
                                     
                                     <div className="mx-2">
                                         <a target="_blank" rel="noreferrer"

@@ -1,5 +1,5 @@
 import React from 'react';
-import FormattedGold from '../FormattedGold';
+import FormattedGold from '../utility/FormattedGold';
 import { ClipboardCopyIcon, ExternalLinkIcon } from '@heroicons/react/outline'
 import { toast } from 'react-toastify';
 

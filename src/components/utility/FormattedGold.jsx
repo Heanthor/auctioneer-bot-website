@@ -1,4 +1,4 @@
-import {formatGold} from '../utils/item-utils';
+import {formatGold} from '../../utils/item-utils';
 
 /* Converts an integer buyPrice (in copper) to an element mimicing the WoW display of Gold/Silver/Copper */
 const FormattedGold = props => {

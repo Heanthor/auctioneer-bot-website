@@ -4,6 +4,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Landing from './components/pages/Landing';
 import WebTool from './components/pages/WebTool';
+import Feature from './components/utility/Feature';
+import featureFlags from './utils/feature-flags';
 
 import {
     BrowserRouter as Router,
@@ -30,12 +32,17 @@ const App = () => {
 
             <Router>
                 <Switch>
-                    <Route path="/web-tool">
-                        <WebTool />
-                    </Route>
+                    {/* We can't use the utility Feature component here. Only Route components can be rendered in a Switch. */}
+                    {featureFlags.webTool &&
+                        <Route path="/web-tool">
+                            <WebTool />
+                        </Route>
+                    }
+                    
                     <Route path="/">
                         <Landing />
                     </Route>
+                    
                 </Switch>
             </Router>
 

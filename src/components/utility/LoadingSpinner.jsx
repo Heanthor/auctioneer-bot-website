@@ -15,9 +15,11 @@ const LoadingSpinner = props => {
                         <div className="sk-chase-dot"></div>
                     </div>
                 </div>
-                <div className="flex justify-center mt-8 text-xl">
-                    {loadingText || "Loading ..."}
-                </div>
+                {loadingText && 
+                    <div className="flex justify-center mt-8 text-xl">
+                        {loadingText}
+                    </div>
+                }
             </div>
         </div>
     );

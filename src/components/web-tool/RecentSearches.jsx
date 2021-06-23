@@ -1,49 +1,75 @@
 import React from 'react';
-import _ from 'lodash';
+import {categorizeRecentSearches} from '../../utils/recent-searches';
 
 /* Rendered when a search has not yet been made or if the user has navigated to Recent Searches directly
-    Shows the last 10 search queries. (mode, region, realm, item)
+    Shows the last 20 search queries. (mode, region, realm, item)
 */
 const RecentSearches = props => {
     const {recentSearches, onRecentSearchSelect} = props;
-    const truncatedSearches = recentSearches.slice(0,10).reverse();
+    const truncatedSearches = recentSearches.slice(0,10);
+    const categorizedSearches = categorizeRecentSearches(truncatedSearches);
     
+    const renderRecentSearchButton = (searchDetails, key) => (
+        <button
+            key={key}
+            className={`results-item-button block`}
+            onClick={() => onRecentSearchSelect(searchDetails)}
+        >
+            <div className="flex">
+                <div className="mr-1 underline text-left">
+                    {`${searchDetails.itemName} (${searchDetails.itemId})`}
+                </div>
+                <div className="text-gray-500 text-right flex-1 ml-2" >
+                    {searchDetails.serverSelection.label}-{searchDetails.regionSelection.label}
+                </div>
+            </div>
+        </button>
+    )
+
+    const renderSearches = searches => searches.map((search, index) => {
+        if (search && search.serverSelection && search.regionSelection
+            && search.modeSelection && search.searchQuery
+        ) {
+            return renderRecentSearchButton(search, index);
+        } else {
+            return <div />;
+        }
+    })
+
     return (
-        <div className="multiple-results-container relative p-8">
+        <div className="recent-searches-container multiple-results-container relative px-8 pb-8 pt-5" key="recent-searches">
             <div className="text-3xl text-white font-medium">
+                <i className="fa fa-history mr-3" />
                 Recent Searches
             </div>
-            <div className="text-2xl mb-3">
-                The last 10 search queries you've made.
+            <div className="text-lg mb-3">
+                The last 10 unique search queries you've made.
             </div>
-            {truncatedSearches.map((search, index) => {
-                if (search && search.serverSelection && search.regionSelection
-                    && search.modeSelection && search.searchQuery
-                ) {
-                    return (
-                        <button
-                            key={index}
-                            className={`results-item-button block`}
-                            onClick={() => onRecentSearchSelect(search)}
-                        >
-                            <span className="mr-1">
-                                <span className="mr-1">
-                                    {search.modeSelection === "p"
-                                        ? `Price Check: "${search.searchQuery}"`
-                                        : `Buyer's Guide: "${search.searchQuery}"`
-                                    }
-                                    
-                                </span>
-                                
-                            </span>
-                            <span className="text-gray-500" >{search.serverSelection.label}-{search.regionSelection.label}</span>
-                        </button>
-                    );
-                } else {
-                    return <div />;
-                }
-                
-            })}
+
+            {/* Render Price Report searches */}
+            {categorizedSearches.pSearches?.length &&
+                <>
+                    <div className="text-2xl text-white mt-10">
+                        Price Reports
+                    </div>
+                    <div className="inline-flex flex-col">
+                        {renderSearches(categorizedSearches.pSearches)}
+                    </div>
+                </>
+            }
+
+            {/* Render Buyer's Guide searches */}
+            {!!categorizedSearches.bgSearches?.length &&
+                <>
+                    <div className="text-2xl text-white mt-10">
+                        Buyer's Guides
+                    </div>
+                    <div className="inline-flex flex-col">
+                        {renderSearches(categorizedSearches.bgSearches)}
+                    </div>
+                    
+                </>
+            }
         </div>
     );
 }

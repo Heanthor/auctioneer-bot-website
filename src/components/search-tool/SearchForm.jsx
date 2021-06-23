@@ -7,6 +7,7 @@ import {
     twServers,
     krServers
 } from '../../utils/constants';
+import LoadingSpinner from '../utility/LoadingSpinner';
 
 /* Customization (theming) for react-select */
 const customStyles = {
@@ -54,13 +55,15 @@ const SearchTool = props => {
         setRegionSelection,
         serverSelection,
         setServerSelection,
+        setBuiltTree,
         modeSelection,
         setModeSelection,
         searchQuery,
         setSearchQuery,
         loading,
         handleSearch,
-        invalidSearchAttempted
+        invalidSearchAttempted,
+        serviceMeta
     } = props;
     
     const serverOptions = () => {
@@ -76,6 +79,12 @@ const SearchTool = props => {
     const handleRegionChange = region => {
         setRegionSelection(region);
         setServerSelection(null)
+    }
+
+    const handleRecentSearchesClick = () => {
+        serviceMeta.setResponse(null);
+        setBuiltTree(null);
+        serviceMeta.setErrored(false);
     }
 
     /* Store Region/Server/Mode selection in Local Storage */
@@ -212,14 +221,39 @@ const SearchTool = props => {
                 </div>
 
                 {/* Search Button */}
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between flex-wrap">
                     <button
                         type="button"
-                        className="search-button inline-flex text-white bg-purple-700 border-0 px-6 focus:outline-none hover:bg-purple-600 rounded h-12 content-center flex justify-center mr-3"
+                        className="search-button inline-flex text-white bg-purple-700 border-0 px-6 focus:outline-none hover:bg-purple-600 rounded h-12 content-center flex justify-center flex-1 sm:flex-none"
                         onClick={handleSearch}
                         disabled={loading}
                     >
-                        <p className="my-auto">Search</p>
+
+                        {/* < desktop */}
+                        <span className="my-auto xl:hidden">Search</span>
+
+                        {/* >= desktop */}
+                        <span className="my-auto hidden xl:inline">
+                            {loading ? 'Searching ...' : 'Search'}
+                        </span>
+
+
+                        
+                        {loading && /* On < desktop screen size, show a spinner in the button when loading */
+                            <div className="my-auto ml-2 mx-0 xl:hidden">
+                                <LoadingSpinner
+                                    containerClasses="button-spinner w-full flex justify-center color-white"
+                                />
+                            </div>
+                        }
+                    </button>
+                    <button
+                        type="button"
+                        className="recent-searches-button text-white py-2 px-3 flex-1 sm:flex-none ml-0 sm:ml-4 mt-4 sm:mt-0"
+                        onClick={handleRecentSearchesClick}
+                    >
+                        <i className="fa fa-history mr-2" />
+                        <span className="underline">Recent Searches</span>
                     </button>
                 </div>
             </form>

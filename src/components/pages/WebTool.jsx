@@ -6,7 +6,6 @@ import './WebTool.scss';
 import SearchForm from '../search-tool/SearchForm';
 import { PAGE_NAMES } from '../../utils/constants';
 import {getBuyersGuidePlus} from '../../service/buyers-guide-service';
-import {recordRecentSearch} from '../../utils/recent-searches';
 
 /* Retrieve preferences from Local Storage */
 const getPreferences = () => {
@@ -27,6 +26,13 @@ const WebTool = () => {
     const [response, setResponse] = React.useState(null);
     const [errored, setErrored] = React.useState(false);
     const [invalidSearchAttempted, setInvalidSearchAttempted] = React.useState(false);
+    const [builtTree, setBuiltTree] = React.useState(null);
+
+    const serviceMeta = {
+        setLoading,
+        setResponse,
+        setErrored
+    };
 
     const handleSearch = (event, itemDetails, searchDetails) => {
 
@@ -48,13 +54,6 @@ const WebTool = () => {
             /* Clear the currently stored API response */
             response && setResponse(null);
 
-            const serviceMeta = {
-                setLoading,
-                setResponse,
-                setErrored
-            };
-            
-            recordRecentSearch(formValues);
             getBuyersGuidePlus(formValues, serviceMeta);
 
             // Reset form validation
@@ -71,7 +70,7 @@ const WebTool = () => {
         setRegionSelection(searchDetails.regionSelection);
         setServerSelection(searchDetails.serverSelection);
         setModeSelection(searchDetails.modeSelection);
-        setSearchQuery(searchDetails.searchQuery);
+        setSearchQuery(searchDetails.itemId);
         handleSearch(null, null, searchDetails);
     }
 
@@ -93,6 +92,7 @@ const WebTool = () => {
                         setRegionSelection={setRegionSelection}
                         serverSelection={serverSelection}
                         setServerSelection={setServerSelection}
+                        setBuiltTree={setBuiltTree}
                         modeSelection={modeSelection}
                         setModeSelection={setModeSelection}
                         searchQuery={searchQuery}
@@ -100,15 +100,18 @@ const WebTool = () => {
                         loading={loading}
                         handleSearch={handleSearch}
                         invalidSearchAttempted={invalidSearchAttempted}
+                        serviceMeta={serviceMeta}
                     />
                     
-                    <div className="item-tree mt-8 xl:mt-0 xl:flex-auto xl:flex xl:flex-col xl:justify-items-stretch">
+                    <div className="response-visualization mt-8 xl:mt-0 xl:flex-auto xl:flex xl:flex-col xl:justify-items-stretch">
                         <ResponseVisualization
                             loading={loading}
                             errored={errored}
                             response={response}
                             handleSearchResultItemSelect={handleSearchResultItemSelect}
                             handleRecentSearchSelect={handleRecentSearchSelect}
+                            setBuiltTree={setBuiltTree}
+                            builtTree={builtTree}
                         />
                     </div>
                 </div>

@@ -36,7 +36,7 @@ const Discord = () => {
 
                                     <Feature name="webTool">
                                         <div className="mx-2">
-                                            <Link to="/web-tool" className="focus:outline-none text-white bg-purple-700 border-0 px-6 hero-button-white focus-within:bg-purple-600 hover:bg-purple-600 rounded h-12 content-center flex justify-center">
+                                            <Link to="/web-tool" className="focus:outline-none text-white bg-purple-700 border-0 px-6 hero-button-yellow focus-within:bg-purple-600 hover:bg-purple-600 rounded h-12 content-center flex justify-center">
                                                 <div className="my-auto">
                                                 <i className="fa fa-stream mr-2" />
                                                 Try the Web Tool

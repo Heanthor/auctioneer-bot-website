@@ -5,8 +5,8 @@ import LoadingSpinner from '../utility/LoadingSpinner';
 import MultipleResults from './MultipleResults';
 import {getRecentSearches} from '../../utils/recent-searches';
 import RecentSearches from './RecentSearches';
+
 const ResponseVisualization = props => {
-    const [builtTree, setBuiltTree] = React.useState(null);
     let content = <div />;
     let builtTreeInfo, builtMultipleResults;
     const recentSearches = getRecentSearches();
@@ -16,7 +16,9 @@ const ResponseVisualization = props => {
         errored,
         response,
         handleSearchResultItemSelect,
-        handleRecentSearchSelect
+        handleRecentSearchSelect,
+        setBuiltTree,
+        builtTree,
     } = props;
 
     /* If the response was successful, massage the data */
@@ -32,25 +34,14 @@ const ResponseVisualization = props => {
     /* Determine which visualization to render */
     if (!response && !loading && !errored && !recentSearches) {
         /* user has not executed a search yet */
-        /* hidden on < desktop screens */
         content = (
-            <div className="w-full results-placeholder-container hidden xl:flex xl:flex-col">
-                <div className="placeholder-flavor-head" />
-                <div className="placeholder-flavor w-full" />
-                <div className="placeholder-filler w-full flex justify-center" />
-            </div>
+            <div />
         );
-    } else if (recentSearches && !response && !loading && !errored){
+    } else if (recentSearches?.length && !response && !loading && !errored){
         /* user has not executed a search yet, but has recent searches to display  */
         /* hidden on < desktop screens */
         content = (
             <>
-                <div className="absolute w-full">
-                    <div className="results-placeholder-container hidden xl:flex xl:flex-col">
-                        <div className="placeholder-flavor-head" />
-                        <div className="placeholder-flavor w-full" />
-                    </div>
-                </div>
                 <RecentSearches
                     recentSearches={recentSearches}
                     onRecentSearchSelect={handleRecentSearchSelect}
@@ -61,12 +52,10 @@ const ResponseVisualization = props => {
         /* request is loading */
         /* hidden on < desktop screens */
         content = (
-            <div className="w-full results-placeholder-container hidden xl:flex xl:flex-col">
-                <div className="placeholder-flavor-head" />
-                <div className="placeholder-flavor w-full" />
+            <div className="w-full hidden xl:flex xl:flex-col">
                 <LoadingSpinner
                     containerClasses="placeholder-filler w-full flex justify-center pt-16"
-                    loadingText="Loading ..."
+                    loadingText="Searching ..."
                 />
             </div>
         );
@@ -74,12 +63,6 @@ const ResponseVisualization = props => {
         /* request was successful with 1 (recipe) result */
         content = (
             <>
-                <div className="absolute w-full">
-                    <div className="results-placeholder-container hidden xl:flex xl:flex-col">
-                        <div className="placeholder-flavor-head" />
-                        <div className="placeholder-flavor w-full" />
-                    </div>
-                </div>
                 <Recipe
                     data={builtTree.formattedTree}
                     recipeId="recipe_tree"
@@ -91,12 +74,6 @@ const ResponseVisualization = props => {
         /* Request was successful with multiple results. Prompt the user to select an item */
         content = (
             <>
-                <div className="absolute w-full">
-                    <div className="results-placeholder-container hidden xl:flex xl:flex-col">
-                        <div className="placeholder-flavor-head" />
-                        <div className="placeholder-flavor w-full" />
-                    </div>
-                </div>
                 <MultipleResults
                     results={builtMultipleResults}
                     didTruncate={response.Data.DidTruncate}

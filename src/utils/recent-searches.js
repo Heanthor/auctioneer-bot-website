@@ -2,6 +2,13 @@ import _ from 'lodash';
 
 /* Utility functions for the recent searches report */
 
+/* Categorize searches by mode */
+export const categorizeRecentSearches = searches => {
+    return {
+        pSearches: searches.filter(search => search.modeSelection === 'p'),
+        bgSearches: searches.filter(search => search.modeSelection === 'bg'),
+    }
+}
 
 /* Retrieve from localStorage any recent searches, an array of objects */
 export const getRecentSearches = () => {
@@ -32,13 +39,12 @@ export const recordRecentSearch = searchDetails => {
 
     /* If there are recent searches, ensure we don't duplicate any before recording */
     if (parsedRecentSearches && parsedRecentSearches.length) {
-        if (
-            parsedRecentSearches.filter(recentSearchDetails => _.isEqual(searchDetails, recentSearchDetails)).length === 0
-        ) {
-            parsedRecentSearches.push(searchDetails);
-            window.localStorage.setItem('recentSearches', JSON.stringify(parsedRecentSearches));
-        }
-        
+        /* Remove duplicate searches to this one */
+        parsedRecentSearches = parsedRecentSearches.filter(recentSearchDetails => !_.isEqual(searchDetails, recentSearchDetails));
+        /* Push to beginning. Slice off the last (least recent) search. */
+        parsedRecentSearches.unshift(searchDetails);
+        parsedRecentSearches = parsedRecentSearches.slice(0,10);
+        window.localStorage.setItem('recentSearches', JSON.stringify(parsedRecentSearches));
     } else {
         window.localStorage.setItem('recentSearches', JSON.stringify([searchDetails]));
     }

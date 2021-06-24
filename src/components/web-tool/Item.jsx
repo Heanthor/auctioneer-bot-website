@@ -1,7 +1,8 @@
 import React from 'react';
 import FormattedGold from '../utility/FormattedGold';
-import { ClipboardCopyIcon, ExternalLinkIcon } from '@heroicons/react/outline'
-import { toast } from 'react-toastify';
+import {ClipboardCopyIcon, ExternalLinkIcon} from '@heroicons/react/outline'
+import {toast} from 'react-toastify';
+import {mobileViewport} from '../../utils/generic-utils';
 
 /* Show a toast message when the item name text has been successfully copied to clipboard */
 const getToast = copyText => {
@@ -78,13 +79,17 @@ const Item = props => {
 
     return (
         <div className="item-container">
-            
-            <div className={bgRecommendation === 'Craft'
-                    ? "item text-white item-dotted shadow-lg"
-                    : "item text-white item-solid shadow-lg" 
-                } key={id}>
-
-
+            <div
+                key={id}
+                onClick={
+                    () => mobileViewport()
+                        && window.open(`https://www.wowhead.com/item=${id}`, '_blank')
+                }
+                className={bgRecommendation === 'Craft'
+                    ? "item text-white item-dotted shadow-lg cursor-pointer sm:cursor-default mr-4 lg:mr-0"
+                    : "item text-white item-solid shadow-lg cursor-pointer sm:cursor-default mr-4 lg:mr-0" 
+                }
+            >
                 <div className="item-icon">
                     <img src={icon} alt="item-icon"/>
                 </div>
@@ -111,7 +116,7 @@ const Item = props => {
                 </div>
                 
                 {/* Item "actions", i.e. open new tab to wowhead page for this item, and copy the name of the item to clipboard */}
-                <div className="item-action-container">
+                <div className="item-action-container hidden sm:flex">
                         <a
                             href={`https://www.wowhead.com/item=${id}`}
                             className="item-name-copy-container flex"

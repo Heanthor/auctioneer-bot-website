@@ -1,0 +1,1 @@
+export const mobileViewport = () => window.innerWidth < 640;

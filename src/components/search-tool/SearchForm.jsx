@@ -8,6 +8,7 @@ import {
     krServers
 } from '../../utils/constants';
 import LoadingSpinner from '../utility/LoadingSpinner';
+import ReactTooltip from "react-tooltip";
 
 /* Customization (theming) for react-select */
 const customStyles = {
@@ -112,9 +113,34 @@ const SearchTool = props => {
 
                 {/* Mode Select (radio group) */}
                 <div className="mb-8">
-                    <label className="block text-white text-xl font-bold mb-2" htmlFor="select-mode">
-                        Mode
-                    </label>
+                    <div className="flex items-center mb-2">
+                        <label className="block text-white text-xl font-bold" htmlFor="select-mode">
+                            Mode
+                        </label>
+                        
+                        <div className="hidden lg:block xl:hidden">
+                            {/* An info-circle icon that can be hovered over */}
+                            <span data-tip>
+                                <i className="gold-info-icon fas fa-info-circle text-white ml-2"/>
+                            </span>
+
+                            {/* The contents of the tooltip itself */}
+                            <ReactTooltip
+                                place="right"
+                                className='info-tooltip-content'
+                                effect="solid"
+                            >
+                                <div>
+                                    <div className="font-bold"><u>Price Report:</u></div>
+                                    <div>Get key stats and information on any item on the Auction House.</div>
+                                    <div className="font-bold mt-2"><u>Buyer's Guide:</u></div>
+                                    <div>Every item in a craftable item's recipe and item in the those item's recipes and so on.</div>
+                                </div>
+                            </ReactTooltip>
+
+                        </div>
+
+                    </div>
                     <div className="radio-selection">
                         <section>
                             <div>
@@ -128,7 +154,7 @@ const SearchTool = props => {
                                 />
                                 <label htmlFor="control_01">
                                     <div className="font-semibold">Price Report</div>
-                                    <div className="radio-subtext">
+                                    <div className="radio-subtext block lg:hidden xl:block">
                                         Get key stats and information on any item on the Auction House.
                                     </div>
                                 </label>
@@ -145,7 +171,7 @@ const SearchTool = props => {
                                 />
                                 <label htmlFor="control_02">
                                     <div className="font-semibold">Buyer's Guide</div>
-                                    <div className="radio-subtext">
+                                    <div className="radio-subtext block lg:hidden xl:block">
                                         Every item in a craftable item's recipe and item in the those item's recipes and so on.
                                     </div>
                                 </label>
@@ -224,23 +250,21 @@ const SearchTool = props => {
                 <div className="flex items-center justify-between flex-wrap">
                     <button
                         type="button"
-                        className="search-button inline-flex text-white bg-purple-700 border-0 px-6 focus:outline-none hover:bg-purple-600 rounded h-12 content-center flex justify-center flex-1 sm:flex-none"
+                        id="search-button"
+                        className="search-button inline-flex text-white bg-purple-700 border-0 px-6 focus:outline-none hover:bg-purple-600 rounded h-12 content-center flex justify-center flex-1 sm:flex-none lg:flex-1 xl:flex-none"
                         onClick={handleSearch}
                         disabled={loading}
                     >
-
                         {/* < desktop */}
-                        <span className="my-auto xl:hidden">Search</span>
+                        <span className="my-auto lg:hidden">Search</span>
 
                         {/* >= desktop */}
-                        <span className="my-auto hidden xl:inline">
+                        <span className="my-auto hidden lg:inline">
                             {loading ? 'Searching ...' : 'Search'}
                         </span>
 
-
-                        
                         {loading && /* On < desktop screen size, show a spinner in the button when loading */
-                            <div className="my-auto ml-2 mx-0 xl:hidden">
+                            <div className="my-auto ml-2 mx-0 lg:hidden">
                                 <LoadingSpinner
                                     containerClasses="button-spinner w-full flex justify-center color-white"
                                 />
@@ -249,7 +273,7 @@ const SearchTool = props => {
                     </button>
                     <button
                         type="button"
-                        className="recent-searches-button text-white py-2 px-3 flex-1 sm:flex-none ml-0 sm:ml-4 mt-4 sm:mt-0"
+                        className="recent-searches-button text-white py-2 px-3 flex-1 sm:flex-none lg:flex-1 xl:flex-none ml-0 sm:ml-4 lg:ml-0 xl:ml-4 mt-4 sm:mt-0 lg:mt-4 xl:mt-0"
                         onClick={handleRecentSearchesClick}
                     >
                         <i className="fa fa-history mr-2" />

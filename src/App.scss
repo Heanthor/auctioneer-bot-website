@@ -1,3 +1,9 @@
+html {
+    @media screen and (max-width: 767px) {
+        scroll-behavior: smooth;
+    }
+}
+
 body {
     background-color: #111827;
 }
@@ -213,9 +219,14 @@ div.nav-link {
     display: block;
     width: 25%;
     height: 25%;
-    background-color: #182035;
     border-radius: 100%;
-    animation: sk-chase-dot-before 2.0s infinite ease-in-out both; 
+    animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
+    @media screen and (max-width: 639px) {
+        background-color: #fff;
+    }
+    @media screen and (min-width: 640px) {
+        background-color: #182035;
+    }
 }
 
 .sk-chase-dot:nth-child(1) { animation-delay: -1.1s; }
@@ -256,5 +267,11 @@ div.nav-link {
         background-color: #fff;
         border-radius: 100%;
         animation: sk-chase-dot-before 2.0s infinite ease-in-out both; 
+    }
+}
+
+.footer-container {
+    @media screen and (min-width: 1024px) {
+        border-top: 1px solid #1b253c;
     }
 }

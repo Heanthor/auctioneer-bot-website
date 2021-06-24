@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Landing from './components/pages/Landing';
 import WebTool from './components/pages/WebTool';
 import featureFlags from './utils/feature-flags';
+import ScrollToTop from './components/utility/ScrollToTop';
 
 import {
     BrowserRouter as Router,
@@ -30,6 +31,7 @@ const App = () => {
 
 
             <Router>
+                <ScrollToTop />
                 <Switch>
                     {/* We can't use the utility Feature component here. Only Route components can be rendered in a Switch. */}
                     {featureFlags.webTool &&

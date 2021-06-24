@@ -54,7 +54,7 @@ const ResponseVisualization = props => {
         /* request is loading */
         /* hidden on < desktop screens */
         content = (
-            <div className="w-full hidden xl:flex xl:flex-col">
+            <div className="w-full lg:flex lg:flex-col">
                 <LoadingSpinner
                     containerClasses="placeholder-filler w-full flex justify-center pt-16"
                     loadingText="Searching ..."

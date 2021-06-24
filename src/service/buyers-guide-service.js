@@ -1,13 +1,6 @@
 
-import {mockBountifulResponse, mockTruncatedResponse} from '../mockData'
 import {recordRecentSearch} from '../utils/recent-searches';
 import axios from 'axios';
-
-const mockApiCall = (t, v) => {
-    return new Promise((resolve, reject) => { 
-        setTimeout(resolve.bind(null, v) /*reject.bind(new Error("error!"))*/, t)
-    });
-}
 
 const updateRecentSearches = (response, formValues) => {
     let recentSearch;
@@ -52,13 +45,16 @@ export const getBuyersGuidePlus = (formValues, serviceMeta) => {
         https://designer.mocky.io/manage/delete/596c1480-68b0-4747-bf41-34f5a897247d/0h5iCacyP7KIcYtUbYTlX4Z7UlBue2Lu9F2u
     */
 
-    let mockUrl;
+    const RECIPE_BOUNTIFUL = 'https://run.mocky.io/v3/295ad3ed-ed1b-4978-9400-1a5c6eb37b11';
+    const SEARCH_CAPTAIN = 'https://run.mocky.io/v3/f3fbdaaf-ab46-46e3-85df-dfabb1e77209';
+    const ERROR_NO_RESULTS = 'https://run.mocky.io/v3/596c1480-68b0-4747-bf41-34f5a897247d'
+
 
     const determineMockUrl = () => {
         switch (searchQuery?.toString()) {
-            case "156526": return 'https://run.mocky.io/v3/295ad3ed-ed1b-4978-9400-1a5c6eb37b11';
-            case "37811": return 'https://run.mocky.io/v3/596c1480-68b0-4747-bf41-34f5a897247d';
-            default: return 'https://run.mocky.io/v3/f3fbdaaf-ab46-46e3-85df-dfabb1e77209';
+            case "156526": return RECIPE_BOUNTIFUL;
+            case "37811": return ERROR_NO_RESULTS;
+            default: return SEARCH_CAPTAIN;
         }
     }
 

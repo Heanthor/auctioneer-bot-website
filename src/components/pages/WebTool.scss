@@ -1,10 +1,16 @@
 .response-visualization {
-    @media only screen and (max-width: 1279px) {
-        max-width: 600px;
+
+    @media only screen and (max-width: 767px) {
+        min-height: 100vh;
     }
 
-    @media only screen and (min-width: 1280px) {
-        height: calc(100vh - 201px);
+    @media only screen and (max-width: 1023px) {
+        max-width: 600px;
+        overflow-y: auto;
+    }
+
+    @media only screen and (min-width: 1024px) {
+        height: calc(100vh - 145px);
         overflow: auto;
         position: relative;
         background-color: #080b12;
@@ -22,8 +28,18 @@
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
         font-size: 13px;
-        width: 310px;
+
+        @media screen and  (max-width: 639px) {
+            min-width: 253px;
+        }
+
+        @media screen and  (min-width: 640px) {
+            width: 310px;
+        }
+        
         .item-icon {
+            flex-grow: 0;
+            flex-basis: auto;
             >img {
                 border-top-left-radius: 3px;
                 border-bottom-left-radius: 3px;
@@ -34,9 +50,14 @@
         }
 
         .item-name-price {
-            border-right: 3px solid #212935;
             padding: 0rem 0.5rem 0rem 0.5rem;
-            min-width: 223px;
+            @media screen and (max-width: 639px) {
+                min-width: 184px;
+            }
+            @media screen and (min-width: 640px) {
+                min-width: 223px;
+                border-right: 3px solid #212935;
+            }
         }
 
         .item-name-container {
@@ -48,7 +69,6 @@
         }
 
         .item-action-container {
-            display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 27px;
@@ -80,7 +100,12 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            max-width: 180px;
+            @media screen and (max-width: 639px) {
+                max-width: 142px;
+            }
+            @media screen and (min-width: 640px) {
+                max-width: 180px;
+            }
         }
 
         .item-name-copy-container {
@@ -215,20 +240,29 @@ hr.custom {
 .web-tool-container {
     background-color: #080b12;
 
-    @media only screen and (min-width: 1280px) {
-        min-height: calc(100vh - 201px);
+    @media only screen and (min-width: 1024px) {
+        min-height: calc(100vh - 145px);
         display: flex;
     }
 }
 
 .search-form {
-    @media only screen and (max-width: 1279px) {
+    @media only screen and (min-width: 640px) and (max-width: 1023px) {
         border: 1px solid #1f2c47;
         border-radius: 6px;
     }
 
-    @media only screen and (min-width: 1280px) {
+    @media only screen and (min-width: 1024px) {
         border-right: 1px solid #1b253c;
+        max-width: 360px;
+        min-width: 360px;
+    }
+
+    @media only screen and (min-width: 1280px) {
+        border-top: none;
+        border-right: 1px solid #1b253c;
+        border-bottom: none;
+        border-left: none;
         max-width: 540px;
         min-width: 540px;
     }
@@ -295,6 +329,15 @@ hr.custom {
         min-height: 30px;
         padding: 3px 4px;
         color: #EF4444;
+    }
+
+    .gold-info-icon {
+        color: #eda31c;
+    }
+
+    .info-tooltip-content {
+        max-width: 400px;
+        opacity: 1 !important; /* thanks, react-tooltip */
     }
 
     .radio-selection {
@@ -382,10 +425,10 @@ hr.custom {
 .multiple-results-container {
 
     .result-item-name {
-        @media screen and (max-width: 1279px) {
+        @media screen and (max-width: 1023px) {
             max-width: 42vw;
         }
-        @media screen and (min-width: 1280px) {
+        @media screen and (min-width: 1024px) {
             max-width: 32vw;
         }
         text-overflow: ellipsis;

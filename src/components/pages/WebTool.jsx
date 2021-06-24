@@ -8,6 +8,7 @@ import {PAGE_NAMES} from '../../utils/constants';
 import {getBuyersGuidePlus} from '../../service/buyers-guide-service';
 import {useHistory} from 'react-router-dom';
 import {getInitialFormValues, canInitializeFromUrl} from '../../utils/item-utils';
+import {mobileViewport} from '../../utils/generic-utils';
 
 /* Retrieve preferences from Local Storage */
 const getPreferences = () => {
@@ -67,9 +68,15 @@ const WebTool = () => {
             
             /* Clear the currently stored API response */
             response && setResponse(null);
+            setErrored(false);
             
             getBuyersGuidePlus(formValues, serviceMeta);
-
+            
+            if (mobileViewport()) {
+                let searchButtonElement = document.getElementById('search-button');
+                searchButtonElement && searchButtonElement.scrollIntoView();
+            }
+            
             // Reset form validation
             setInvalidSearchAttempted(false);
         } else {
@@ -102,9 +109,8 @@ const WebTool = () => {
         <>
             <Header pageName={PAGE_NAMES.WEB_TOOL} classNames="bg-header" />
 
-            <section className="web-tool-container text-gray-400 body-font pt-8 xl:pt-0">
-                <div className="container xl:w-full px-5 xl:px-0 pt-5 xl:pt-0 mx-auto xl:mx-0 lg:w-3/4 pb-16 xl:pb-0 xl:flex xl:max-w-none">
-                    
+            <section className="web-tool-container text-gray-400 body-font pt-0 sm:pt-8 lg:pt-0">
+                <div className="container px-0 sm:px-5 lg:px-0 pt-0 sm:pt-5 lg:pt-0 mx-auto lg:mx-0 md:w-11/12 lg:w-full pb-16 lg:pb-0 lg:flex lg:max-w-none">
                     <SearchForm
                         regionSelection={regionSelection}
                         setRegionSelection={setRegionSelection}
@@ -121,7 +127,10 @@ const WebTool = () => {
                         serviceMeta={serviceMeta}
                     />
                     
-                    <div className="response-visualization mt-8 xl:mt-0 xl:flex-auto xl:flex xl:flex-col xl:justify-items-stretch">
+                    <div
+                        id="response-visualization"
+                        className="response-visualization mt-8 lg:mt-0 lg:flex-auto lg:flex lg:flex-col lg:justify-items-stretch"
+                    >
                         <ResponseVisualization
                             loading={loading}
                             errored={errored}
@@ -140,7 +149,7 @@ const WebTool = () => {
                 </div>
             </section>
 
-            <Footer />
+            <Footer pageName={PAGE_NAMES.WEB_TOOL} shrinkOnDesktop />
         </>
     );
 }

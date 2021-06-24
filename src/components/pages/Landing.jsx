@@ -14,7 +14,7 @@ const Landing = () => {
             <News />
             <Discord />
             <CommandList />
-            <Footer />
+            <Footer pageName={PAGE_NAMES.AUCTION_BOT} />
         </>
     );
 }

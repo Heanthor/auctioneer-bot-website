@@ -6,7 +6,7 @@ import bgCommandImage from '../../resources/bg+.png';
 const CommandList = () => {
     return (
         <section className="text-gray-400 bg-flavor body-font pt-16">
-            <div className="md:w-2/3 w-full mx-auto">
+            <div className="lg:w-2/3 w-full mx-auto">
                 <div className="container px-3 pb-6 mx-auto flex flex-wrap">
                     <div className="w-full xl:w-2/3">
                         <div className="text-white text-2xl pb-2 md:w-full">Bot Commands</div>

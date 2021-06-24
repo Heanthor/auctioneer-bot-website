@@ -6,7 +6,6 @@ import _ from 'lodash';
 */
 const MultipleResults = props => {
     const {results, didTruncate, numItemsQueried, onItemSelect} = props;
-    console.log(results);
     let alphabetizedResults = _.orderBy(results, ['name'],['asc']);
     let resultsCountMessage = didTruncate
         ? `Displaying ${results.length} out of (${numItemsQueried}) total results.`

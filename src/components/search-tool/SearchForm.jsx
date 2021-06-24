@@ -73,7 +73,7 @@ const SearchTool = props => {
             "KR": krServers,
             "TW": twServers
         }
-        return regionMap[regionSelection.value];
+        return regionMap[regionSelection?.value];
     }
 
     const handleRegionChange = region => {

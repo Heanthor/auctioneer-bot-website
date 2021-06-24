@@ -19,7 +19,7 @@ const RecentSearches = props => {
                 <div className="mr-1 underline text-left">
                     {`${searchDetails.itemName} (${searchDetails.itemId})`}
                 </div>
-                <div className="text-gray-500 text-right flex-1 ml-2" >
+                <div className="text-gray-500 text-right flex-1 ml-4" >
                     {searchDetails.serverSelection.label}-{searchDetails.regionSelection.label}
                 </div>
             </div>

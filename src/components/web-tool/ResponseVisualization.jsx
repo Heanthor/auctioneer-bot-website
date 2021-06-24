@@ -5,6 +5,7 @@ import LoadingSpinner from '../utility/LoadingSpinner';
 import MultipleResults from './MultipleResults';
 import {getRecentSearches} from '../../utils/recent-searches';
 import RecentSearches from './RecentSearches';
+import ServiceError from './ServiceError';
 
 const ResponseVisualization = props => {
     let content = <div />;
@@ -19,6 +20,7 @@ const ResponseVisualization = props => {
         handleRecentSearchSelect,
         setBuiltTree,
         builtTree,
+        formValues
     } = props;
 
     /* If the response was successful, massage the data */
@@ -67,10 +69,11 @@ const ResponseVisualization = props => {
                     data={builtTree.formattedTree}
                     recipeId="recipe_tree"
                     itemsCount={builtTree.itemsCount}
+                    formValues={formValues}
                 />
             </>
         );
-    } else if (response?.Data?.TruncatedResults && !loading && !errored) {
+    } else if (response?.Data?.TruncatedResults && !loading && !errored && !builtTree) {
         /* Request was successful with multiple results. Prompt the user to select an item */
         content = (
             <>
@@ -82,6 +85,10 @@ const ResponseVisualization = props => {
                 />
             </>
         );
+    } else if (errored && !loading) {
+        content = (
+            <ServiceError error={errored} />
+        )
     }
 
     return content;

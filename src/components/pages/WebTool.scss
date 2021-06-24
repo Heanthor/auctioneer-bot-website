@@ -213,6 +213,8 @@ hr.custom {
 }
 
 .web-tool-container {
+    background-color: #080b12;
+
     @media only screen and (min-width: 1280px) {
         min-height: calc(100vh - 201px);
         display: flex;

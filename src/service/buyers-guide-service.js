@@ -1,10 +1,11 @@
 
 import {mockBountifulResponse, mockTruncatedResponse} from '../mockData'
 import {recordRecentSearch} from '../utils/recent-searches';
+import axios from 'axios';
 
 const mockApiCall = (t, v) => {
-    return new Promise(function(resolve) { 
-        setTimeout(resolve.bind(null, v), t)
+    return new Promise((resolve, reject) => { 
+        setTimeout(resolve.bind(null, v) /*reject.bind(new Error("error!"))*/, t)
     });
 }
 
@@ -32,26 +33,46 @@ export const getBuyersGuidePlus = (formValues, serviceMeta) => {
         searchQuery
     } = formValues;
 
-    console.log(formValues);
-
     const {
         setLoading,
         setResponse,
         setErrored
     } = serviceMeta;
     /* eslint-enable no-unused-vars */
-
+    
+    
     setLoading(true);
     
-    /* TODO: call the API */
+    /* TODO: call the real API */
+    
 
-    mockApiCall(2500, searchQuery === 156526 ? mockBountifulResponse : mockTruncatedResponse)
+    /* These mock APIs can be deleted using the following links:
+        https://designer.mocky.io/manage/delete/295ad3ed-ed1b-4978-9400-1a5c6eb37b11/HX2R9nShNYqiQCQ8EVqZd7Ksn5P81Q1gcWWa
+        https://designer.mocky.io/manage/delete/f3fbdaaf-ab46-46e3-85df-dfabb1e77209/QqJnSYb4k6qjvdzrKY47mO8guaL4uU0lOpjt
+        https://designer.mocky.io/manage/delete/596c1480-68b0-4747-bf41-34f5a897247d/0h5iCacyP7KIcYtUbYTlX4Z7UlBue2Lu9F2u
+    */
+
+    let mockUrl;
+
+    const determineMockUrl = () => {
+        switch (searchQuery?.toString()) {
+            case "156526": return 'https://run.mocky.io/v3/295ad3ed-ed1b-4978-9400-1a5c6eb37b11';
+            case "37811": return 'https://run.mocky.io/v3/596c1480-68b0-4747-bf41-34f5a897247d';
+            default: return 'https://run.mocky.io/v3/f3fbdaaf-ab46-46e3-85df-dfabb1e77209';
+        }
+    }
+
+    axios.get(determineMockUrl())
         .then(response => {
-            setResponse(response);
-            updateRecentSearches(response, formValues);
+            setResponse(response.data);
+            updateRecentSearches(response.data, formValues);
         }).catch(error => {
             setErrored(error);
         }).finally(() => {
             setLoading(false);
         })
+
+    /*
+    mockApiCall(2500, searchQuery?.toString() === "156526" ? mockBountifulResponse : mockTruncatedResponse)
+    */
 }

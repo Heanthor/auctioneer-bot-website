@@ -4,8 +4,10 @@ import Header from '../home/Header';
 import Footer from '../home/Footer';
 import './WebTool.scss';
 import SearchForm from '../search-tool/SearchForm';
-import { PAGE_NAMES } from '../../utils/constants';
+import {PAGE_NAMES} from '../../utils/constants';
 import {getBuyersGuidePlus} from '../../service/buyers-guide-service';
+import {useHistory} from 'react-router-dom';
+import {getInitialFormValues, canInitializeFromUrl} from '../../utils/item-utils';
 
 /* Retrieve preferences from Local Storage */
 const getPreferences = () => {
@@ -15,18 +17,23 @@ const getPreferences = () => {
     } catch { return {} }
 }
 
+
+
 /* The 'web tool' page. Allows users to interact with the API through a web interface rather than the discord bot. */
 const WebTool = () => {
     const preferences = getPreferences();
-    const [regionSelection, setRegionSelection] = React.useState(preferences.preferredRegion || {label: "US", value: "US"});
-    const [serverSelection, setServerSelection] = React.useState(preferences.preferredServer || undefined);
-    const [modeSelection, setModeSelection] = React.useState(preferences.preferredMode || "p");
-    const [searchQuery, setSearchQuery] = React.useState("");
+    const history = useHistory();
+    const initialValues = getInitialFormValues(preferences, history);
+    const [regionSelection, setRegionSelection] = React.useState(initialValues.regionSelection);
+    const [serverSelection, setServerSelection] = React.useState(initialValues.serverSelection);
+    const [modeSelection, setModeSelection] = React.useState(initialValues.modeSelection);
+    const [searchQuery, setSearchQuery] = React.useState(initialValues.searchQuery);
     const [loading, setLoading] = React.useState(false);
     const [response, setResponse] = React.useState(null);
     const [errored, setErrored] = React.useState(false);
     const [invalidSearchAttempted, setInvalidSearchAttempted] = React.useState(false);
     const [builtTree, setBuiltTree] = React.useState(null);
+    const [needsInitializationFromUrl, setNeedsInitializationFromUrl] = React.useState(canInitializeFromUrl(history));
 
     const serviceMeta = {
         setLoading,
@@ -34,10 +41,17 @@ const WebTool = () => {
         setErrored
     };
 
-    const handleSearch = (event, itemDetails, searchDetails) => {
+    React.useEffect(() => {
+        /* If URL params were provided, immediately execute a search */
+        if (needsInitializationFromUrl) {
+            setNeedsInitializationFromUrl(false);
+            handleSearch(null, null, initialValues);
+        }
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+    const handleSearch = (event, itemDetails, searchDetails) => {
         let formValues;
-        
+        setBuiltTree(null);
         if (searchDetails) {
             formValues = searchDetails;
         } else if (regionSelection && serverSelection && modeSelection && searchQuery) {
@@ -53,7 +67,7 @@ const WebTool = () => {
             
             /* Clear the currently stored API response */
             response && setResponse(null);
-
+            
             getBuyersGuidePlus(formValues, serviceMeta);
 
             // Reset form validation
@@ -80,12 +94,16 @@ const WebTool = () => {
         setSearchQuery(itemDetails?.id || "");
     }
     
+    if (needsInitializationFromUrl) {
+        return <div />;
+    }
+
     return (
         <>
             <Header pageName={PAGE_NAMES.WEB_TOOL} classNames="bg-header" />
 
-            <section className="web-tool-container text-gray-400 bg-gray-900 body-font pt-8 xl:pt-0">
-                <div className="container xl:w-full px-5 xl:px-0 pt-5 xl:pt-0 mx-auto xl:mx-0 lg:w-3/4 mb-16 xl:mb-0 xl:flex xl:max-w-none">
+            <section className="web-tool-container text-gray-400 body-font pt-8 xl:pt-0">
+                <div className="container xl:w-full px-5 xl:px-0 pt-5 xl:pt-0 mx-auto xl:mx-0 lg:w-3/4 pb-16 xl:pb-0 xl:flex xl:max-w-none">
                     
                     <SearchForm
                         regionSelection={regionSelection}
@@ -112,6 +130,11 @@ const WebTool = () => {
                             handleRecentSearchSelect={handleRecentSearchSelect}
                             setBuiltTree={setBuiltTree}
                             builtTree={builtTree}
+                            formValues={{
+                                regionSelection,
+                                serverSelection,
+                                modeSelection
+                            }}
                         />
                     </div>
                 </div>

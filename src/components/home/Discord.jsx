@@ -13,20 +13,20 @@ const Discord = () => {
                 </div>
             </div>
             <section className="text-gray-400 body-font relative">
-                <div className="container px-5 pt-5 mx-auto flex flex-wrap md:w-2/3">
+                <div className="container px-5 pt-5 mx-auto flex flex-wrap lg:w-9/12 xl:w-2/3">
                     <div className="flex flex-col flex-wrap py-6 text-center md:mx-auto">
                         <div className="flex flex-col pb-8 lg:items-start items-center">
                             <div className="flex-grow">
-                                <h2 className="text-white text-lg title-font font-medium mb-3 capitalize text-5xl">the best price every
+                                <h2 className="text-white text-lg title-font font-medium mb-3 capitalize text-3xl sm:text-4xl md:text-5xl">the best price every
                                     time</h2>
                                 <div className="pb-5">
-                                    <p className="leading-relaxed text-base text-3xl mb-3">Make your gold go farther with convenient
+                                    <p className="leading-relaxed text-base text-2xl md:text-3xl mb-3">Make your gold go farther with convenient
                                         stats sent to you in Discord for every item on the auction house!</p>
                                 </div>
                                 <div className="hero-button-container flex flex-wrap justify-around">
                                     <div className="mx-2">
                                         <a target="_blank" rel="noreferrer"
-                                            className="inline-flex w-full block text-white bg-purple-700 border-0 px-6 focus:outline-none focus:bg-purple-600 hover:bg-purple-600 rounded h-12 content-center flex justify-center"
+                                            className="w-full block text-white bg-purple-700 border-0 px-6 focus:outline-none focus:bg-purple-600 hover:bg-purple-600 rounded h-12 content-center flex justify-center"
                                             href="https://discordapp.com/oauth2/authorize?&client_id=492451055632777228&scope=bot&permissions=0"
                                         >
                                             <i className="fas fa-robot fa-lg mr-2 my-auto"></i>
@@ -36,7 +36,7 @@ const Discord = () => {
 
                                     <Feature name="webTool">
                                         <div className="mx-2">
-                                            <Link to="/web-tool" className="focus:outline-none text-white bg-purple-700 border-0 px-6 hero-button-yellow focus-within:bg-purple-600 hover:bg-purple-600 rounded h-12 content-center flex justify-center">
+                                            <Link to="/web-tool" className="hero-button-yellow focus:outline-none border-0 px-6 rounded h-12 content-center flex justify-center">
                                                 <div className="my-auto">
                                                 <i className="fa fa-stream mr-2" />
                                                 Try the Web Tool
@@ -47,7 +47,7 @@ const Discord = () => {
                                     
                                     <div className="mx-2">
                                         <a target="_blank" rel="noreferrer"
-                                            className="inline-flex px-6 hero-button-discord focus:outline-none rounded h-12 content-center flex justify-center"
+                                            className="px-6 hero-button-discord focus:outline-none rounded h-12 content-center flex justify-center"
                                             href="https://discord.gg/Jv2DpfzXNC"
                                         >
                                             <svg className="h-full mr-2" id="Layer_1" xmlns="http://www.w3.org/2000/svg"

@@ -3,7 +3,7 @@ import MoneyAndCoinsImage from '../../resources/money_and_coins_white.png';
 
 const Footer = () => {
     return (
-        <footer className="text-gray-600 bg-gray-900 body-font px-6 w-full border-t border-gray-700">
+        <footer className="text-gray-600 bg-header body-font px-6 w-full">
             <div className="container py-5  flex items-center sm:flex-row flex-col">
                 <span className="flex title-font font-medium items-center md:justify-start justify-center text-white">
                     <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-purple-400">

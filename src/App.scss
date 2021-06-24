@@ -47,10 +47,16 @@ div.nav-link {
 
 
 .hero-button-container {
+    @media screen and (max-width: 512px) {
+        > div {
+            flex: 1 1 100%;
+        }
+    }
 
     > div {
         margin-bottom: 1rem;
-        min-width: 209px;
+        min-width: 210px;
+        max-width: 360px;
     }
 
     .hero-button-yellow {
@@ -60,7 +66,7 @@ div.nav-link {
         transition: 0.3s;
         &:hover,
         &:focus {
-            background: #ccc;
+            background: #fcd164;
         }
     }
     

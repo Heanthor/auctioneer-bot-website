@@ -33,7 +33,7 @@ const News = () => {
             expireOn: new Date('06/25/21'),
             content: 
                 <section className="text-white bg-gray-900 body-font pt-8">
-                    <div className="md:w-2/3 w-full mx-auto">
+                    <div className="lg:w-2/3 w-full mx-auto">
                     <div className="bg-purple-700 border-t-4 border-purple-900 rounded-b px-4 py-3 shadow-md" role="alert">
                         <div className="flex justify-between">
                             <div className="flex">

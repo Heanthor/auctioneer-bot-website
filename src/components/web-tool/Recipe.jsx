@@ -4,16 +4,22 @@ import Tree, { useTreeState } from 'react-hyper-tree';
 import {MinusCircleIcon} from '@heroicons/react/outline';
 import {PlusCircleIcon} from '@heroicons/react/solid'
 import {findTreeObject} from '../../utils/item-utils';
+import {useHistory} from "react-router-dom";
+import {updateUrlSearch} from '../../utils/item-utils';
 
 /* Renders a 'tree' of items for a recipe */
 const Recipe = props => {
+    const history = useHistory();
     const [initialized, setInitialized] = React.useState(false);
-    const {data, recipeId, itemsCount} = props;
+    const {data, recipeId, itemsCount, formValues} = props;
     const {required, handlers, instance} = useTreeState({
         data: data,
         defaultOpened: false,
         id: recipeId,
     })
+
+    const rootItemId = data?.name?.itemInfo?.Item?.id;
+    updateUrlSearch(history, formValues, rootItemId);
 
     /* Given a constraint with react-hyper-tree, we're effectively forced to initially render the tree as
         completely collapsed. We iterate through each node to determine if it should be expanded. Items that
@@ -33,7 +39,7 @@ const Recipe = props => {
             }
         }
         setInitialized(true);
-    }    
+    }
 
     const setNodeOpen = id => {
         setInitialized(true);

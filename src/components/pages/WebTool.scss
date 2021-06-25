@@ -377,8 +377,12 @@ hr.custom {
         color: #EF4444;
     }
 
-    .gold-info-icon {
-        color: #eda31c;
+    .mode-info-tooltip {
+        position: relative;
+        bottom: -1px;
+        .gold-info-icon {
+            color: #eda31c;
+        }
     }
 
     .info-tooltip-content {

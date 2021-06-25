@@ -118,7 +118,7 @@ const SearchTool = props => {
                             Mode
                         </label>
                         
-                        <div className="hidden lg:block xl:hidden">
+                        <div className="mode-info-tooltip hidden lg:block xl:hidden">
                             {/* An info-circle icon that can be hovered over */}
                             <span data-tip>
                                 <i className="gold-info-icon fas fa-info-circle text-white ml-2"/>

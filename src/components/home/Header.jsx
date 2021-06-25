@@ -15,7 +15,10 @@ const Header = props => {
                     <div className="flex items-center">
                         <img src={LogoImage} className="inline-block ml-4 mt-4 mb-4 h-20 rounded-full border-4 border-purple-500"
                             alt="logo with pile of treasure" />
-                        <span className="ml-3 text-xl">Buyer's Guide: {pageName}</span>
+                        <div className="text-xl flex flex-wrap pl-1">
+                            <div className="ml-2">Buyer's Guide:</div>
+                            <div className="ml-2">{pageName}</div>
+                        </div>
                     </div>
                     
                     <Feature name="webTool">

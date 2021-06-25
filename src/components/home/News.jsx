@@ -30,7 +30,7 @@ const News = () => {
     const newsItems = [
         {
             id: 42721,
-            expireOn: new Date('06/25/21'),
+            expireOn: new Date('06/28/21'),
             content: 
                 <section className="text-white bg-gray-900 body-font pt-8">
                     <div className="lg:w-2/3 w-full mx-auto">

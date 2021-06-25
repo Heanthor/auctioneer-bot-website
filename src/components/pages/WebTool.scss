@@ -201,35 +201,16 @@
 
         .value-container {
             border-radius: 5px;
+            max-width: 350px;
 
-            @media screen and (min-width: 640px) {
-                border: 1px solid #141c2e;
-
-                &.bg-dark {
-                    background: rgba(0,0,0,0.2);
-                }
-
-                &.highlighted  {
-                    background: #c68610;
-                    color: #2b2b2b!important;
-                    .gold-abbreviation {
-                        color: #c4b5fd;
-                    }
-                }
-                
+            &.highlighted  {
+                background: #141c2e;
             }
-
-            .gold-abbreviation {
-                font-weight: 500;
-                color: #cdcecf;
-            }
-        }
-
-        .formatted-gold-container {
-            font-size: 64px;
+            
             img {
-                height: 15px;
-                margin-right: 8px;
+                height: 27px;
+                margin-bottom: 9px;
+                margin-right: 0.4rem;
             }
         }
     }
@@ -242,6 +223,7 @@
     img {
         height: 10px;
         margin-right: 4px;
+        margin-bottom: 3px;
     }
 }
 

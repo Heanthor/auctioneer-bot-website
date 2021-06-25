@@ -1,17 +1,25 @@
 import React from 'react';
 import moment from 'moment';
 import {textIsGoldAmount, formatGold, sortedMarketValues} from '../../utils/item-utils';
+import GoldCoin from '../../resources/gold_coin.svg';
+import SilverCoin from '../../resources/silver_coin.svg';
+import CopperCoin from '../../resources/copper_coin.svg';
+import {updateUrlSearch} from '../../utils/item-utils';
+import {useHistory} from "react-router-dom";
 
 /* Visual represenation of the Price Report */
 const PriceReport = props => {
-    const {data} = props;
-    
+    const {data, formValues} = props;
+    const history = useHistory();
+
     const {
         PriceResult: priceResult,
         DataLastRefreshed: dataLastRefreshed,
         Realm: realm
-    } = data; 
-    
+    } = data;
+
+    priceResult?.ID && updateUrlSearch(history, formValues, priceResult.ID);
+
     return (
         <div className="price-report px-4 py-2 lg:px-8 lg:py-6">
             <div className="item-name-container text-3xl mb-5 text-white flex items-center">
@@ -27,20 +35,23 @@ const PriceReport = props => {
                     let priceObject = result.Value && formatGold(result.Value);
 
                     return (
-                        <div key={index} className="value-container ml-4 p-4 mb-4 bg-dark">
+                        <div key={index} className={result.Title === "Lowest buyout price"
+                            ? "value-container ml-4 p-4 mb-4 highlighted"
+                            : "value-container ml-4 p-4 mb-4 bg-dark"
+                        }>
                             <div className="font-medium capitalize">
                                 {result.Title}
                             </div>
-                            <div className="text-4xl text-white font-bold">
+                            <div className="text-4xl text-white font-semibold">
                                 {textIsGoldAmount(result.DisplayValue)
                                     ? (
-                                        <div>
+                                        <div className="flex items-end">
                                             <span>{priceObject?.gold}</span>
-                                            <span className="gold-abbreviation mr-3">g</span>
+                                            <img src={GoldCoin} alt="Gold Coin" />
                                             <span>{priceObject?.silver}</span>
-                                            <span className="gold-abbreviation mr-3">s</span>
+                                            <img src={SilverCoin} alt="Silver Coin" />
                                             <span>{priceObject?.copper}</span>
-                                            <span className="gold-abbreviation mr-3">c</span>
+                                            <img src={CopperCoin} alt="Copper Coin" />
                                         </div>
                                     ) : (
                                         <div>{result.DisplayValue}</div>

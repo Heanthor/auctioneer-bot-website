@@ -83,6 +83,7 @@ const ResponseVisualization = props => {
             <>
                 <PriceReport
                     data={response.Data}
+                    formValues={formValues}
                 />
             </>
         );

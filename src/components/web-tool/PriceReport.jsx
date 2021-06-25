@@ -27,14 +27,8 @@ const PriceReport = props => {
                     let priceObject = result.Value && formatGold(result.Value);
 
                     return (
-                        <div key={index} className={result.Title === "Lowest buyout price"
-                            ? "value-container highlighted ml-4 p-4 mb-4 sm:bg-purple-800"
-                            : "value-container ml-4 p-4 mb-4 bg-dark"
-                        }>
-                            <div className={result.Title === "Lowest buyout price"
-                                ? "font-medium capitalize text-white"
-                                : "font-medium capitalize"
-                            }>
+                        <div key={index} className="value-container ml-4 p-4 mb-4 bg-dark">
+                            <div className="font-medium capitalize">
                                 {result.Title}
                             </div>
                             <div className="text-4xl text-white font-bold">

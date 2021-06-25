@@ -6,13 +6,13 @@ const FormattedGold = props => {
     let formattedGold = formatGold(buyPrice);
 
     return (
-        <div className="formatted-gold-container">           
+        <div className="formatted-gold-container">        
+            <div className="mr-1/2">{formattedGold.gold}</div>   
             <img src="https://wow.zamimg.com/images/icons/money-gold.gif" alt="gold" />
-            <div className="mr-1">{formattedGold.gold}</div>
+            <div className="mr-1/2">{formattedGold.silver}</div>
             <img src="https://wow.zamimg.com/images/icons/money-silver.gif" alt="silver" />
-            <div className="mr-1">{formattedGold.silver}</div>
+            <div className="mr-1/2">{formattedGold.copper}</div>
             <img src="https://wow.zamimg.com/images/icons/money-copper.gif" alt="copper" />
-            <div>{formattedGold.copper}</div>
         </div>
     );
 }

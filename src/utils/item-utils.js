@@ -161,3 +161,16 @@ export const canInitializeFromUrl = history => {
     const params = getUrlParams(history);
     return !!(params?.mode && params?.region && params?.realm && params?.item);
 }
+
+export const textIsGoldAmount = text => {
+    return text.match(/\d+g \d+s \d+c/);
+}
+
+export const sortedMarketValues = values => {
+    const lowestBuyout = values.filter(value => value.Title === "Lowest buyout price")[0];
+    const twelfthPercentile = values.filter(value => value.Title === "12th percentile average price")[0];
+    const averagePrice = values.filter(value => value.Title === "Average price")[0];
+    const standardDeviation = values.filter(value => value.Title === "Standard deviation")[0];
+    const marketSupply = values.filter(value => value.Title === "Market supply")[0];
+    return [lowestBuyout, marketSupply, twelfthPercentile, averagePrice, standardDeviation];
+}

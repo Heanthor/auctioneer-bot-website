@@ -187,6 +187,50 @@
             background-color: #14181f;
         }
     }
+
+    .price-report {
+        max-width: 800px;
+
+        .item-name-container {
+            img {
+                height: 50px;
+                width: 50px;
+                border-radius: 5px;
+            }
+        }
+
+        .value-container {
+            border-radius: 5px;
+
+            @media screen and (min-width: 640px) {
+                border: 1px solid #141c2e;
+
+                &.bg-dark {
+                    background: rgba(0,0,0,0.2);
+                }
+
+                &.highlighted  {
+                    .gold-abbreviation {
+                        color: #c4b5fd;
+                    }
+                }
+                
+            }
+
+            .gold-abbreviation {
+                font-weight: 500;
+                color: #cdcecf;
+            }
+        }
+
+        .formatted-gold-container {
+            font-size: 64px;
+            img {
+                height: 15px;
+                margin-right: 8px;
+            }
+        }
+    }
 }
 
 .formatted-gold-container {
@@ -195,7 +239,7 @@
     font-size: 11px;
     img {
         height: 10px;
-        margin-right: 3px;
+        margin-right: 4px;
     }
 }
 

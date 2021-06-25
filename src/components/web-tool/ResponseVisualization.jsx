@@ -6,6 +6,7 @@ import MultipleResults from './MultipleResults';
 import {getRecentSearches} from '../../utils/recent-searches';
 import RecentSearches from './RecentSearches';
 import ServiceError from './ServiceError';
+import PriceReport from './PriceReport';
 
 const ResponseVisualization = props => {
     let content = <div />;
@@ -21,7 +22,7 @@ const ResponseVisualization = props => {
         setBuiltTree,
         builtTree,
         formValues
-    } = props;
+    } = props;    
 
     /* If the response was successful, massage the data */
     if (response && !errored && !loading && !builtTree) {
@@ -61,15 +62,27 @@ const ResponseVisualization = props => {
                 />
             </div>
         );
-    } else if (response && !errored && !loading && builtTree && !response?.Data?.TruncatedResults) {
-        /* request was successful with 1 (recipe) result */
+    } else if (response && !errored && !loading && builtTree
+        && !response?.Data?.TruncatedResults
+    ) {
+        /* bg request was successful with 1 (recipe) result */
         content = (
             <>
                 <Recipe
                     data={builtTree.formattedTree}
-                    recipeId="recipe_tree"
                     itemsCount={builtTree.itemsCount}
                     formValues={formValues}
+                />
+            </>
+        );
+    } else if (response?.Data?.PriceResult && response && !errored && !loading && response?.Data
+        && !response?.Data?.TruncatedResults
+    ) {
+        /* p request was successful with 1 (item) result */
+        content = (
+            <>
+                <PriceReport
+                    data={response.Data}
                 />
             </>
         );

@@ -11,11 +11,11 @@ import {updateUrlSearch} from '../../utils/item-utils';
 const Recipe = props => {
     const history = useHistory();
     const [initialized, setInitialized] = React.useState(false);
-    const {data, recipeId, itemsCount, formValues} = props;
+    const {data, itemsCount, formValues} = props;
     const {required, handlers, instance} = useTreeState({
         data: data,
         defaultOpened: false,
-        id: recipeId,
+        id: "recipe_tree",
     })
 
     const rootItemId = data?.name?.itemInfo?.Item?.id;

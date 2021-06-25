@@ -1,7 +1,7 @@
 import React from 'react';
 import {useLocation} from 'react-router-dom';
 
-/* A component rendered in the Router which listens for pathname changes.
+/* A component rendered in the Router which listens for window.pathname changes.
     Scrolls to the top of the page when the path changes.
 */
 const ScrollToTop = () => {

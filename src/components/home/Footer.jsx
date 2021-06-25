@@ -33,7 +33,8 @@ const Footer = props => {
                         : "text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4 flex flex-wrap justify-center sm:justify-start"
                     }>
                     <div className="whitespace-nowrap">
-                        © 2018-2021 Made with <span style={{color: '#DC2626'}}>❤</span> by
+                        <span className="mr-2">© 2018-2021</span>
+                        Made with <span style={{color: '#DC2626'}}>❤</span> by
                     </div>
                     <div className="whitespace-nowrap">
                     <a

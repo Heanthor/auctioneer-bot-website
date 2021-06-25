@@ -1,5 +1,5 @@
 const featureFlags = {
-    webTool: false
+    webTool: true
 }
 
 export default featureFlags;

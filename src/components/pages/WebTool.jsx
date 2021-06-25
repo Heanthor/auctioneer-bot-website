@@ -50,12 +50,20 @@ const WebTool = () => {
         }
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+    /* Execute a search against the API */
     const handleSearch = (event, itemDetails, searchDetails) => {
         let formValues;
         setBuiltTree(null);
+        
+        /* Determine where to gather the search criteria from -- i.e. URL or form fields*/
+
+        /* If we are executing a search for something that is not currently in the form fields.
+          e.g. search criteria from url params or from clicking on a Recent Search */
         if (searchDetails) {
             formValues = searchDetails;
-        } else if (regionSelection && serverSelection && modeSelection && searchQuery) {
+        }
+        /* Otherwise if all of the fields have been filled out */
+        else if (regionSelection && serverSelection && modeSelection && searchQuery) {
             formValues = {
                 regionSelection,
                 serverSelection,
@@ -70,8 +78,10 @@ const WebTool = () => {
             response && setResponse(null);
             setErrored(false);
             
+            /* Call the API */
             getBuyersGuidePlus(formValues, serviceMeta);
             
+            /* If on mobile, scroll down to where the user can see the results load */
             if (mobileViewport()) {
                 let searchButtonElement = document.getElementById('search-button');
                 searchButtonElement && searchButtonElement.scrollIntoView();
@@ -87,6 +97,7 @@ const WebTool = () => {
         event?.preventDefault();
     }
 
+    /* User clicks on a 'Recent Search' option --> initialize all of the fields to execute that search.  */
     const handleRecentSearchSelect = searchDetails => {
         setRegionSelection(searchDetails.regionSelection);
         setServerSelection(searchDetails.serverSelection);

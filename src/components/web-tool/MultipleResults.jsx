@@ -16,16 +16,17 @@ const MultipleResults = props => {
             <div className="text-3xl text-white font-medium">
                 {resultsCountMessage}
             </div>
-            <div className="text-2xl mb-3">
+            <div className="text-lg mb-3">
                 Select an item or refine your search query.
             </div>
+
             <div className="inline-flex flex-col">
                 {alphabetizedResults.map((result, index) => {
                     return (
                         <button
                             key={index}
                             title={`${result.name} (${result.id})`}
-                            className={`results-item-button rarity-${result.quality} block`}
+                            className={`results-item-button rarity-${result.quality} block mt-1`}
                             onClick={() => onItemSelect({name: result.name, id: result.id})}
                         >
                             <div className="flex">

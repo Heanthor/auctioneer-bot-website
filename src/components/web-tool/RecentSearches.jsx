@@ -12,14 +12,14 @@ const RecentSearches = props => {
     const renderRecentSearchButton = (searchDetails, key) => (
         <button
             key={key}
-            className={`results-item-button block`}
+            className="results-item-button block mt-3 md:mt-1"
             onClick={() => onRecentSearchSelect(searchDetails)}
         >
-            <div className="flex">
+            <div className="block md:flex">
                 <div className="mr-1 underline text-left">
                     {`${searchDetails.itemName} (${searchDetails.itemId})`}
                 </div>
-                <div className="text-gray-500 text-right flex-1 ml-4" >
+                <div className="text-gray-500 text-left md:text-right flex-1 ml-0 md:ml-4" >
                     {searchDetails.serverSelection.label}-{searchDetails.regionSelection.label}
                 </div>
             </div>

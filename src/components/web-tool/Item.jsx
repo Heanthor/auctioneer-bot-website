@@ -22,12 +22,20 @@ const getToast = copyText => {
 /* A single Item to be displayed in a Recipe */
 const Item = props => {
     const {isRoot, hasComponents} = props;
-    const {icon, name, id, IsVendored: isVendored} = props.itemInfo.Item;
+    const {
+        icon,
+        name,
+        id,
+        IsVendored: isVendored,
+        
+    } = props.itemInfo?.Item;
+
     const {
         Quantity: quantity,
         AHPrice: auctionHousePrice,
         BGRecommendation: bgRecommendation,
         CheapestRecipe: cheapestRecipe,
+        MissingReason: missingReason
     } = props.itemInfo;
 
     let craftedPrice, renderedPrice;
@@ -56,22 +64,30 @@ const Item = props => {
 
             {/* Strike-through the price that is not recommended (higher price) by Buyer's Guide */}
             <div className="flex items-center">
-                <div className={bgRecommendation === 'Craft'
-                    ? "price-note mr-1 flex items-center line-through"
-                    : "price-note mr-1 flex items-center"
-                }>
-                    Buy:
-                </div>
-                <div className={bgRecommendation === 'Craft' ? 'line-through' : ''}>
-                    <FormattedGold buyPrice={auctionHousePrice}/>
-                </div>
-
-                {/* Note next to the price if it comes from a vendor */}
-                {isVendored && 
+                {missingReason === "noAuctions" && (
                     <div className="price-note ml-1 italic flex items-center">
-                        (from vendor)
+                        No Auctions
                     </div>
-                }
+                )}
+                {!missingReason && (
+                    <>
+                    <div className={bgRecommendation === 'Craft'
+                        ? "price-note mr-1 flex items-center line-through"
+                        : "price-note mr-1 flex items-center"
+                    }>
+                        Buy:
+                    </div>
+                    <div className={bgRecommendation === 'Craft' ? 'line-through' : ''}>
+                        <FormattedGold buyPrice={auctionHousePrice}/>
+                    </div>
+                    {/* Note next to the price if it comes from a vendor */}
+                    {isVendored && 
+                        <div className="price-note ml-1 italic flex items-center">
+                            (vendor)
+                        </div>
+                    }
+                    </>
+                )}
                 
             </div>
         </>

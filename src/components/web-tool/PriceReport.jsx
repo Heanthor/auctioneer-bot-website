@@ -31,6 +31,7 @@ const PriceReport = props => {
             </div>
 
             <div className="sm:flex sm:flex-wrap">
+                {/* The Results array is populated */}
                 {priceResult?.Results?.Results && sortedMarketValues(priceResult?.Results?.Results).map((result, index) => {
                     let priceObject = result.Value && formatGold(result.Value);
 
@@ -62,17 +63,19 @@ const PriceReport = props => {
                     );
                 })}
 
+                {/* No active auctions */}
+                {!priceResult?.Results?.Results && priceResult?.Results?.ActiveAuctions === 0 && (
+                    <div className="ml-4 mt-4 text-xl text-white">
+                        <i className="fa fa-times mr-3 text-red-500" />
+                        No active auctions.
+                    </div>
+                )}
+
             </div>
 
             <div className="ml-4 mt-4">
                 <em>(Data last updated {moment(dataLastRefreshed).fromNow()})</em>
             </div>
-            
-            
-
-
-            
-            
         </div>
     );
 }

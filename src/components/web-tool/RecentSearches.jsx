@@ -47,7 +47,7 @@ const RecentSearches = props => {
             </div>
 
             {/* Render Price Report searches */}
-            {categorizedSearches.pSearches?.length &&
+            {!!categorizedSearches.pSearches?.length &&
                 <>
                     <div className="text-2xl text-white mt-10">
                         Price Reports

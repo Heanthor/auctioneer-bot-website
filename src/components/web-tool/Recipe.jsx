@@ -6,18 +6,19 @@ import {PlusCircleIcon} from '@heroicons/react/solid'
 import {findTreeObject} from '../../utils/item-utils';
 import {useHistory} from "react-router-dom";
 import {updateUrlSearch} from '../../utils/item-utils';
+import moment from 'moment';
+
 
 /* Renders a 'tree' of items for a recipe */
 const Recipe = props => {
     const history = useHistory();
     const [initialized, setInitialized] = React.useState(false);
-    const {data, itemsCount, formValues} = props;
+    const {data, itemsCount, formValues, dataLastRefreshed} = props;
     const {required, handlers, instance} = useTreeState({
         data: data,
         defaultOpened: false,
         id: "recipe_tree",
     })
-
     const rootItemId = data?.name?.itemInfo?.Item?.id;
     updateUrlSearch(history, formValues, rootItemId);
 
@@ -94,6 +95,10 @@ const Recipe = props => {
                 verticalLineTopOffset={0}
                 verticalLineOffset={35} 
             />
+
+            <div className="ml-4 mt-6">
+                <em>(Data last updated {moment(dataLastRefreshed).fromNow()})</em>
+            </div>
         </div>
         
     );

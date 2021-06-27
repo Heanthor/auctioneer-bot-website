@@ -1170,10 +1170,10 @@ export const mockTruncatedResponse = {
             },
             {
                 "Item": {
-                    "id": 37305,
+                    "id": 21990,
                     "description": "Without these, or their captain, the Scarlet Onslaught won't be able to sail home!",
-                    "name": "Captain Shely's Rutters",
-                    "icon": "https://render-us.worldofwarcraft.com/icons/56/inv_scroll_04.jpg",
+                    "name": "Netherweave Bandage",
+                    "icon": "https://render-us.worldofwarcraft.com/icons/56/inv_misc_bandage_netherweave.jpg",
                     "equippable": false,
                     "quality": 1,
                     "itemSource": {},
@@ -1276,10 +1276,10 @@ export const mockTruncatedResponse = {
             },
             {
                 "Item": {
-                    "id": 49771,
+                    "id": 172042,
                     "description": "",
-                    "name": "Captain Peake's Eyeballs",
-                    "icon": "https://render-us.worldofwarcraft.com/icons/56/inv_misc_eye_01.jpg",
+                    "name": "Surprisingly Palatable Feast",
+                    "icon": "https://render-us.worldofwarcraft.com/icons/56/inv_tradeskill_cooking_shadowlandsfeast_small01.jpg",
                     "equippable": false,
                     "quality": 1,
                     "itemSource": {},

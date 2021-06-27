@@ -49,8 +49,7 @@ const customStyles = {
     })
 };
 
-const SearchTool = props => {
-    
+const SearchForm = props => {
     const {
         regionSelection,
         setRegionSelection,
@@ -64,7 +63,10 @@ const SearchTool = props => {
         loading,
         handleSearch,
         invalidSearchAttempted,
-        serviceMeta
+        serviceMeta,
+        recentSearches,
+        userSelectingLegendary,
+        setUserSelectingLegendary
     } = props;
     
     const serverOptions = () => {
@@ -84,8 +86,9 @@ const SearchTool = props => {
 
     const handleRecentSearchesClick = () => {
         serviceMeta.setResponse(null);
-        setBuiltTree(null);
         serviceMeta.setErrored(false);
+        setBuiltTree(null);
+        userSelectingLegendary && setUserSelectingLegendary(false);
     }
 
     /* Store Region/Server/Mode selection in Local Storage */
@@ -271,14 +274,16 @@ const SearchTool = props => {
                             </div>
                         }
                     </button>
-                    <button
-                        type="button"
-                        className="recent-searches-button text-white py-2 px-3 flex-1 sm:flex-none lg:flex-1 xl:flex-none ml-0 sm:ml-4 lg:ml-0 xl:ml-4 mt-4 sm:mt-0 lg:mt-4 xl:mt-0"
-                        onClick={handleRecentSearchesClick}
-                    >
-                        <i className="fa fa-history mr-2" />
-                        <span className="underline">Recent Searches</span>
-                    </button>
+                    {recentSearches?.length > 0 && 
+                        <button
+                            type="button"
+                            className="recent-searches-button text-white py-2 px-3 flex-1 sm:flex-none lg:flex-1 xl:flex-none ml-0 sm:ml-4 lg:ml-0 xl:ml-4 mt-4 sm:mt-0 lg:mt-4 xl:mt-0"
+                            onClick={handleRecentSearchesClick}
+                        >
+                            <i className="fa fa-history mr-2" />
+                            <span className="underline">Recent Searches</span>
+                        </button>
+                    }
                 </div>
             </form>
         </div>
@@ -286,4 +291,4 @@ const SearchTool = props => {
     );
 }
 
-export default SearchTool;
+export default SearchForm;

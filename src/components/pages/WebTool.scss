@@ -214,6 +214,22 @@
             }
         }
     }
+
+    .tip-container {
+        @media screen and (max-width: 1023px) {
+            opacity: 0;
+        }
+        i {
+            font-size: 132px;
+            background: linear-gradient(to bottom, #eda31c 0%, #eda31c 80%, #ffffff 81%);
+            background-repeat: no-repeat;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.5;
+        }
+    }
 }
 
 .formatted-gold-container {

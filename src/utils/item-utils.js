@@ -1,4 +1,5 @@
 import {usServers, euServers, twServers, krServers} from './constants'
+import { LEGENDARIES } from './constants';
 
 export const formatGold = copperAmount => ({
     gold: Math.floor(copperAmount / 10000),
@@ -173,4 +174,9 @@ export const sortedMarketValues = values => {
     const standardDeviation = values.filter(value => value.Title === "Standard deviation")[0];
     const marketSupply = values.filter(value => value.Title === "Market supply")[0];
     return [lowestBuyout, marketSupply, twelfthPercentile, averagePrice, standardDeviation];
+}
+
+export const getLegendaryFromIdOrName = item => {
+    return LEGENDARIES.filter(l => l.id === item.toString()?.toLowerCase())[0]
+        || LEGENDARIES.filter(l => l.name.toString()?.toLowerCase() === item.toString()?.toLowerCase())[0];
 }

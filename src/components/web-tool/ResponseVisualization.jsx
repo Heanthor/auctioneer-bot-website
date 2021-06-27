@@ -7,6 +7,7 @@ import {getRecentSearches} from '../../utils/recent-searches';
 import RecentSearches from './RecentSearches';
 import ServiceError from './ServiceError';
 import PriceReport from './PriceReport';
+import LegendaryRankSelection from './LegendaryRankSelection';
 
 const ResponseVisualization = props => {
     let content = <div />;
@@ -17,11 +18,11 @@ const ResponseVisualization = props => {
         loading,
         errored,
         response,
-        handleSearchResultItemSelect,
-        handleRecentSearchSelect,
+        handleResultItemSelect,
         setBuiltTree,
         builtTree,
-        formValues
+        formValues,
+        userSelectingLegendary
     } = props;    
 
     /* If the response was successful, massage the data */
@@ -35,19 +36,40 @@ const ResponseVisualization = props => {
     }
 
     /* Determine which visualization to render */
-    if (!response && !loading && !errored && !recentSearches) {
-        /* user has not executed a search yet */
+
+    /* The user has searched for a legendary id or name, and we have not yet called
+       the API because they need to select a rank.
+    */
+    if (userSelectingLegendary) {
         content = (
-            <div />
+            <LegendaryRankSelection
+                handleRankSelect={handleResultItemSelect}
+                formValues={formValues}
+            />
+        );
+    } else if (!response && !loading && !errored && (!recentSearches || recentSearches.length === 0)) {
+        /* user has not executed a search yet and there are no recent searches to show  */
+        content = (
+            <div className="tip-container w-full flex justify-center pt-8 lg:pt-16">
+                <div className="flex flex-col">
+                    <div className="flex justify-center">
+                        <i className="far fa-lightbulb"/>
+                    </div>
+                    <div className="flex justify-center mt-6">
+                        <span className="font-bold mr-2">Tip:</span>
+                        You can bookmark a search (Ctrl+D) to easily revisit it later.
+                    </div>
+                </div>
+            </div>
         );
     } else if (recentSearches?.length && !response && !loading && !errored){
-        /* user has not executed a search yet, but has recent searches to display  */
+        /* user has not executed a search yet, but there are recent searches to display  */
         /* hidden on < desktop screens */
         content = (
             <>
                 <RecentSearches
                     recentSearches={recentSearches}
-                    onRecentSearchSelect={handleRecentSearchSelect}
+                    onRecentSearchSelect={handleResultItemSelect}
                 />
             </>
         );
@@ -72,6 +94,7 @@ const ResponseVisualization = props => {
                     data={builtTree.formattedTree}
                     itemsCount={builtTree.itemsCount}
                     formValues={formValues}
+                    dataLastRefreshed={response?.Data?.DataLastRefreshed}
                 />
             </>
         );
@@ -95,7 +118,8 @@ const ResponseVisualization = props => {
                     results={builtMultipleResults}
                     didTruncate={response.Data.DidTruncate}
                     numItemsQueried={response.Data.NumItemsQueried}
-                    onItemSelect={handleSearchResultItemSelect}
+                    handleResultItemSelect={handleResultItemSelect}
+                    formValues={formValues}
                 />
             </>
         );

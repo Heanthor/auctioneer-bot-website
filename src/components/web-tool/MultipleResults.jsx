@@ -5,7 +5,7 @@ import _ from 'lodash';
     Prompts the user to select an item.
 */
 const MultipleResults = props => {
-    const {results, didTruncate, numItemsQueried, onItemSelect} = props;
+    const {results, didTruncate, numItemsQueried, handleResultItemSelect, formValues} = props;
     let alphabetizedResults = _.orderBy(results, ['name'],['asc']);
     let resultsCountMessage = didTruncate
         ? `Displaying ${results.length} out of (${numItemsQueried}) total results.`
@@ -27,7 +27,14 @@ const MultipleResults = props => {
                             key={index}
                             title={`${result.name} (${result.id})`}
                             className={`results-item-button rarity-${result.quality} block mt-1`}
-                            onClick={() => onItemSelect({name: result.name, id: result.id})}
+                            onClick={() => handleResultItemSelect({
+                                itemId: result.id,
+                                itemName: result.name,
+                                searchQuery: result.id,
+                                modeSelection: formValues.modeSelection,
+                                serverSelection: formValues.serverSelection,
+                                regionSelection: formValues.regionSelection
+                            })}
                         >
                             <div className="flex">
                                 <div className="underline mr-1 result-item-name text-left text-white" >{result.name}</div>

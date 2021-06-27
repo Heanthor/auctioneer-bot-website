@@ -7,8 +7,10 @@ import SearchForm from '../search-tool/SearchForm';
 import {PAGE_NAMES} from '../../utils/constants';
 import {getBuyersGuidePlus} from '../../service/buyers-guide-service';
 import {useHistory} from 'react-router-dom';
-import {getInitialFormValues, canInitializeFromUrl} from '../../utils/item-utils';
+import {getInitialFormValues, canInitializeFromUrl, getLegendaryFromIdOrName} from '../../utils/item-utils';
 import {mobileViewport} from '../../utils/generic-utils';
+import {getRecentSearches} from '../../utils/recent-searches';
+
 
 /* Retrieve preferences from Local Storage */
 const getPreferences = () => {
@@ -18,12 +20,11 @@ const getPreferences = () => {
     } catch { return {} }
 }
 
-
-
 /* The 'web tool' page. Allows users to interact with the API through a web interface rather than the discord bot. */
 const WebTool = () => {
     const preferences = getPreferences();
     const history = useHistory();
+    const recentSearches = getRecentSearches();
     const initialValues = getInitialFormValues(preferences, history);
     const [regionSelection, setRegionSelection] = React.useState(initialValues.regionSelection);
     const [serverSelection, setServerSelection] = React.useState(initialValues.serverSelection);
@@ -35,6 +36,7 @@ const WebTool = () => {
     const [invalidSearchAttempted, setInvalidSearchAttempted] = React.useState(false);
     const [builtTree, setBuiltTree] = React.useState(null);
     const [needsInitializationFromUrl, setNeedsInitializationFromUrl] = React.useState(canInitializeFromUrl(history));
+    const [userSelectingLegendary, setUserSelectingLegendary] = React.useState(false);
 
     const serviceMeta = {
         setLoading,
@@ -72,11 +74,24 @@ const WebTool = () => {
             };
         }
 
+        /* If the search is for a Legendary, and they are not already picking between ranks of legendaries,
+            dont execute a search. Instead a component for selecting ranks will be rendered.
+        */
+        if (formValues && ((getLegendaryFromIdOrName(formValues.searchQuery?.toString()) && !userSelectingLegendary && !searchDetails?.rank)
+            || (userSelectingLegendary && !searchDetails?.rank))
+        ) {
+            !userSelectingLegendary && setUserSelectingLegendary(true);
+            response && setResponse(null);
+            !errored && setErrored(false);
+            event?.preventDefault();
+            return;
+        }
+
         if (searchDetails || (regionSelection && serverSelection && modeSelection && searchQuery)) {
-            
             /* Clear the currently stored API response */
             response && setResponse(null);
             setErrored(false);
+            searchDetails?.rank && setUserSelectingLegendary(false);
             
             /* Call the API */
             getBuyersGuidePlus(formValues, serviceMeta);
@@ -97,19 +112,13 @@ const WebTool = () => {
         event?.preventDefault();
     }
 
-    /* User clicks on a 'Recent Search' option --> initialize all of the fields to execute that search.  */
-    const handleRecentSearchSelect = searchDetails => {
+    /* User clicks on a result item option --> initialize all of the fields to execute that search.  */
+    const handleResultItemSelect = searchDetails => {
         setRegionSelection(searchDetails.regionSelection);
         setServerSelection(searchDetails.serverSelection);
         setModeSelection(searchDetails.modeSelection);
         setSearchQuery(searchDetails.itemId);
         handleSearch(null, null, searchDetails);
-    }
-
-    const handleSearchResultItemSelect = itemDetails => {
-        handleSearch(null, itemDetails);
-        /* Have search query input's value updated to the selected item's name */
-        setSearchQuery(itemDetails?.id || "");
     }
     
     if (needsInitializationFromUrl) {
@@ -136,6 +145,9 @@ const WebTool = () => {
                         handleSearch={handleSearch}
                         invalidSearchAttempted={invalidSearchAttempted}
                         serviceMeta={serviceMeta}
+                        recentSearches={recentSearches}
+                        userSelectingLegendary={userSelectingLegendary}
+                        setUserSelectingLegendary={setUserSelectingLegendary}
                     />
                     
                     <div
@@ -146,14 +158,15 @@ const WebTool = () => {
                             loading={loading}
                             errored={errored}
                             response={response}
-                            handleSearchResultItemSelect={handleSearchResultItemSelect}
-                            handleRecentSearchSelect={handleRecentSearchSelect}
+                            handleResultItemSelect={handleResultItemSelect}
                             setBuiltTree={setBuiltTree}
                             builtTree={builtTree}
+                            userSelectingLegendary={userSelectingLegendary}
                             formValues={{
                                 regionSelection,
                                 serverSelection,
-                                modeSelection
+                                modeSelection,
+                                searchQuery
                             }}
                         />
                     </div>

@@ -32,8 +32,8 @@ const News = () => {
             id: 42721,
             expireOn: new Date('06/28/21'),
             content: 
-                <section className="text-white bg-gray-900 body-font pt-8">
-                    <div className="lg:w-2/3 w-full mx-auto">
+                <section className="text-white bg-gray-900 xl:bg-transparent body-font">
+                    <div className="xl:w-2/3 w-full mx-auto">
                     <div className="bg-purple-700 border-t-4 border-purple-900 rounded-b px-4 py-3 shadow-md" role="alert">
                         <div className="flex justify-between">
                             <div className="flex">
@@ -73,8 +73,10 @@ const News = () => {
     })
 
     return (
-        <div>
-            {newsItemsToRender.map(newsItem => newsItem)}
+        <div className="xl:absolute xl:z-50 xl:w-full xl:mt-32">
+            <div className="xl:relative">
+                {newsItemsToRender.map(newsItem => newsItem)}
+            </div>
         </div>
     );
 }

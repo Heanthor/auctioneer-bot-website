@@ -1,29 +1,33 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Feature from '../utility/Feature';
+import Header from '../home/Header';
+import { PAGE_NAMES } from '../../utils/constants';
 
 /* Renders a hero section describing Buyer's Guide */
 const Discord = () => {
     return (
-        <div className="relative pb-20">
-            <div className="absolute w-full flavor-container">
+        <div className="relative">
+            
+            <div className="absolute w-full flavor-container block xl:hidden">
                 <div className="results-placeholder-container flex flex-col">
                     <div className="placeholder-flavor-head" />
                     <div className="placeholder-flavor w-full" />
                 </div>
             </div>
-            <section className="text-gray-400 body-font relative">
-                <div className="container px-5 pt-5 mx-auto flex flex-wrap lg:w-9/12 xl:w-2/3">
-                    <div className="flex flex-col flex-wrap py-6 text-center md:mx-auto">
+            <section className="blob-container text-gray-400 body-font relative">
+                <Header pageName={PAGE_NAMES.AUCTION_BOT} />
+                <div className="hero-container container px-5 pt-5 pb-20 lg:pb-32 mx-auto flex flex-wrap lg:w-9/12 ">
+                    <div className="flex flex-col flex-wrap py-6 text-center xl:text-left md:mx-auto xl:mx-16 xl:my-auto">
                         <div className="flex flex-col pb-8 lg:items-start items-center">
                             <div className="flex-grow">
-                                <h2 className="text-white text-lg title-font font-medium mb-3 capitalize text-3xl sm:text-4xl md:text-5xl">the best price every
+                                <h2 className="text-white text-lg title-font font-medium xl:font-bold mb-3 capitalize text-3xl sm:text-4xl md:text-5xl xl:text-6xl xl:w-full">the best price every
                                     time</h2>
                                 <div className="pb-5">
-                                    <p className="leading-relaxed text-base text-2xl md:text-3xl mb-3">Make your gold go farther with convenient
+                                    <p className="leading-relaxed text-base text-lg md:text-xl lg:text-2xl xl:text-xl mb-3 xl:w-3/4">Make your gold go farther with convenient
                                         stats sent to you in Discord for every item on the auction house!</p>
                                 </div>
-                                <div className="hero-button-container flex flex-wrap justify-around">
+                                <div className="hero-button-container flex flex-wrap justify-around xl:justify-start">
                                     <div className="mx-2">
                                         <a target="_blank" rel="noreferrer"
                                             className="w-full block text-white bg-purple-700 border-0 px-6 focus:outline-none focus:bg-purple-600 hover:bg-purple-600 rounded h-12 content-center flex justify-center"
@@ -33,18 +37,18 @@ const Discord = () => {
                                             <p className="my-auto">Add to Discord</p>
                                         </a>
                                     </div>
-
+                                    
                                     <Feature name="webTool">
-                                        <div className="mx-2">
+                                        <div className="mx-2 xl:hidden">
                                             <Link to="/web-tool" className="hero-button-yellow focus:outline-none border-0 px-6 rounded h-12 content-center flex justify-center">
                                                 <div className="my-auto">
-                                                <i className="fa fa-stream mr-2" />
-                                                Try the Web Tool
+                                                    <i className="fa fa-stream mr-2" />
+                                                    Try the Web Tool
                                                 </div>
                                             </Link>
                                         </div>
                                     </Feature>
-                                    
+
                                     <div className="mx-2">
                                         <a target="_blank" rel="noreferrer"
                                             className="px-6 hero-button-discord focus:outline-none rounded h-12 content-center flex justify-center"
@@ -60,6 +64,19 @@ const Discord = () => {
                                             <p className="mt-auto mb-auto">Join the Server</p>
                                         </a>
                                     </div>
+
+                                    <div className="hidden xl:block break" />
+
+                                    <Feature name="webTool">
+                                        <div className="mx-2 hidden xl:block">
+                                            <Link to="/web-tool" className="hero-button-yellow focus:outline-none border-0 px-6 rounded h-12 content-center flex justify-center">
+                                                <div className="my-auto">
+                                                    <i className="fa fa-stream mr-2" />
+                                                    Try the Web Tool
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </Feature>
                                 </div>
                             </div>
                         </div>

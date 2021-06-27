@@ -66,24 +66,25 @@ div.nav-link {
     }
 
     .hero-button-yellow {
-        background: #FBBF24;
-        color: #0d0d0d;
+        background: none;
+        color: #e7aa1e;
         font-weight: 500;
         transition: 0.3s;
+        border: 1px solid;
         &:hover,
         &:focus {
-            background: #fcd164;
+            background: #36342d;
         }
     }
     
     .hero-button-discord {
         color: #fff;
-        background: #5662f6;
-        border: none;
+        background: none;
+        border: 1px solid #fff;
         transition: 0.3s;
         &:hover,
         &:focus {
-            background: #6e77f7;
+            background: #40454f;
             outline: none;
         }
         
@@ -278,4 +279,22 @@ div.nav-link {
 
 .mr-1\/2 {
     margin-right: 0.10rem;
+}
+
+.hero-container {
+    @media screen and (min-width: 1280px) {
+        min-height: calc(100vh - 112px);
+    }
+}
+
+.blob-container {
+    @media screen and (min-width: 1280px) {
+        background:
+            url('./resources/blob2.svg') no-repeat
+    }
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
 }

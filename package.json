@@ -26,7 +26,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build && cp build/index.html build/200.html && rm -r docs && cp -a build/. docs",
+    "build": "craco build && cp build/index.html build/200.html && rm -r docs && mkdir docs && cp -a build/. docs && touch ./docs/CNAME && echo \"wowbuyerseguide.com\" > ./docs/CNAME",
     "test": "craco test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

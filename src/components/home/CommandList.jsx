@@ -21,7 +21,7 @@ const CommandList = () => {
                                         !r
                                     </div>
                                     <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                                        <h2 className="font-medium title-font text-white mb-1 text-xl">Pick a Realm, any Realm</h2>
+                                        <h2 className="font-medium title-font text-white mb-1 text-xl">Pick a Realm</h2>
                                         <p className="leading-relaxed">Simply type !r &#123;realm&#125; and hit enter. A few examples:
                                             <br />
                                             <code className="text-purple-300">!r arthas</code> or <code className="text-purple-300">!r
@@ -54,7 +54,7 @@ const CommandList = () => {
                             </div>
                             <div className="flex relative lg:pl-10 pb-20 sm:items-center w-full">
                                 <img src={pCommandImage}
-                                    alt="example of !p call for akunda's bite to show the variety of information provided."
+                                    alt="example of !p call for rising glory to show the variety of information provided."
                                     className="md:pl-10 xl:pl-0 xl:ml-32 xl:rounded-lg" />
                             </div>
                         </Fade>
@@ -67,10 +67,7 @@ const CommandList = () => {
                                     </div>
                                     <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
                                         <h2 className="font-medium title-font text-white mb-1 text-xl">Master of the Craft</h2>
-                                        <p className="leading-relaxed pb-2">Every item in a craftable item's recipe and item in the
-                                            those
-                                            item's
-                                            recipes and so on.</p>
+                                        <p className="leading-relaxed pb-2">See the full tree of prices for a craftable item, with suggestions for how to get the best deal.</p>
                                         <p className="italic">TLDR; know everything there is to know.</p>
                                     </div>
                                 </div>
@@ -78,7 +75,7 @@ const CommandList = () => {
 
                             <div className="flex relative lg:pl-10 pb-20 sm:items-center w-full">
                                 <img src={bgCommandImage}
-                                    alt="Example of !bg+ call for bountiful captain's feast specifically showing multi-level recipe behavior."
+                                    alt="Example of !bg+ call for shadowghast ring specifically showing multi-level recipe behavior."
                                     className="md:pl-10 xl:pl-0 xl:ml-32 xl:rounded-lg" />
                             </div>
                         </Fade>
@@ -144,6 +141,17 @@ const CommandList = () => {
                                                     className="italic">Shadowlands</span> feasts.
                                             </li>
                                         </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </Fade>
+
+                        <Fade bottom>
+                            <div className="text-white text-2xl xl:text-4xl xl:font-semibold pb-2 md:w-full">Feedback</div>
+                            <div className="flex relative pl-2 pb-20 sm:items-center mt-3">
+                                <div className="flex-grow flex sm:items-center items-start flex-col sm:flex-row">
+                                    <div className="flex-grow mt-6 sm:mt-0">
+                                        To submit feedback, report issues, or be notified when updates are released, <a href="https://discord.gg/Jv2DpfzXNC" className="text-purple-300 underline">join the discord server</a> and say hi!
                                     </div>
                                 </div>
                             </div>

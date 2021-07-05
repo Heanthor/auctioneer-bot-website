@@ -132,7 +132,7 @@ const CommandList = () => {
                                                 <br />
                                                 You can even combine your favorite shorthand with the rank command such as <code
                                                         className="text-purple-300">!p
-                                                    shadowghast r /rank 1</code>.
+                                                    shadowghast /r 1</code>.
                                                 <br />
                                             </li>
                                             <li>

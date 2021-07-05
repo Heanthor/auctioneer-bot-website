@@ -1,6 +1,7 @@
 import React from 'react';
 import pCommandImage from '../../resources/p.png';
 import bgCommandImage from '../../resources/bg+.png';
+import slCommandImage from '../../resources/sl+.png';
 import Fade from 'react-reveal/Fade';
 
 /* Renders a section explaining how to use the discord bot */
@@ -10,24 +11,7 @@ const CommandList = () => {
             <div className="lg:w-2/3 w-full mx-auto">
                 <div className="container px-3 pb-6 mx-auto flex flex-wrap">
                     <div className="w-full xl:w-3/4">
-                        <div className="text-white text-2xl xl:text-4xl xl:font-semibold pb-2 md:w-full">Bot Commands</div>
-                        
-                        <Fade bottom>
-                            <div className="flex relative pl-2 pt-10 pb-20 sm:items-center">
-                                <div className="flex-grow md:pl-8 flex sm:items-center items-start flex-col sm:flex-row">
-                                    <div className="font-mono text-2xl xl:text-3xl flex-shrink-0 text-purple-400 inline-flex items-center justify-center md:w-32 md:h-24">
-                                        !bghelp
-                                    </div>
-                                    <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                                        <h2 className="font-medium title-font text-white mb-1 text-xl">Quick Help</h2>
-                                        <p className="leading-relaxed">Get all the info you could possibly need on all the other
-                                            commands
-                                            the
-                                            Auction Bot can help you with.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Fade>
+                        <div className="text-white text-2xl xl:text-4xl xl:font-semibold pb-10 md:w-full">Bot Commands</div>
                         
                         <Fade bottom>
                             <div className="flex relative pl-2 pb-20 sm:items-center">
@@ -96,6 +80,44 @@ const CommandList = () => {
                                 <img src={bgCommandImage}
                                     alt="Example of !bg+ call for bountiful captain's feast specifically showing multi-level recipe behavior."
                                     className="md:pl-10 xl:pl-0 xl:ml-32 xl:rounded-lg" />
+                            </div>
+                        </Fade>
+
+                        <Fade bottom>
+                            <div className="flex relative pl-2 pb-20 xl:pb-10 sm:items-center">
+                                <div className="flex-grow md:pl-8 flex sm:items-center items-start flex-col sm:flex-row">
+                                    <div className="font-mono text-2xl xl:text-3xl flex-shrink-0 text-purple-400 inline-flex items-center justify-center md:w-32 md:h-24">
+                                        !sl
+                                    </div>
+                                    <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
+                                        <h2 className="font-medium title-font text-white mb-1 text-xl">Price Notifications</h2>
+                                        <p className="leading-relaxed">
+                                            Create a shopping list of items which stay up to date. Get pinged if an item drops below a price you specify.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex relative lg:pl-10 pb-20 sm:items-center w-full">
+                                <img src={slCommandImage}
+                                    alt="example of !sl+ call which shows multiple items and price threshold alerts."
+                                    className="md:pl-10 xl:pl-0 xl:ml-32 xl:rounded-lg" />
+                            </div>
+                        </Fade>
+
+                        <Fade bottom>
+                            <div className="flex relative pl-2 pb-20 sm:items-center">
+                                <div className="flex-grow md:pl-8 flex sm:items-center items-start flex-col sm:flex-row">
+                                    <div className="font-mono text-2xl xl:text-3xl flex-shrink-0 text-purple-400 inline-flex items-center justify-center md:w-32 md:h-24">
+                                        !bghelp
+                                    </div>
+                                    <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
+                                        <h2 className="font-medium title-font text-white mb-1 text-xl">Quick Help</h2>
+                                        <p className="leading-relaxed">Get all the info you could possibly need on all the other
+                                            commands
+                                            the
+                                            Auction Bot can help you with.</p>
+                                    </div>
+                                </div>
                             </div>
                         </Fade>
 

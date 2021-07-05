@@ -51,7 +51,6 @@ const News = () => {
                                     onClick={() => handleDismiss(42722)}
                                     className="bg-white hover:bg-gray-400 text-purple-800 py-2 px-4 bold font-semibold rounded inline-flex items-center max-h-9"
                                 >
-                                    
                                     <span>Nice</span>
                                     <i className="fas fa-check ml-2" />
                                 </button>

@@ -29,8 +29,8 @@ const News = () => {
 
     const newsItems = [
         {
-            id: 42721,
-            expireOn: new Date('06/28/21'),
+            id: 42722,
+            expireOn: new Date('08/01/21'),
             content: 
                 <section className="text-white bg-gray-900 xl:bg-transparent body-font">
                     <div className="xl:w-2/3 w-full mx-auto">
@@ -41,14 +41,14 @@ const News = () => {
                                     <i className="fas fa-bullhorn" />
                                 </div>
                                 <div>
-                                    <p className="font-bold">4/28/21</p>
-                                    <p className="text-sm">Some vendor prices were updated, recipes like Codex of the Still Mind are much more accurate now.</p>
+                                    <p className="font-bold">7/5/21</p>
+                                    <p className="text-sm">Updates for 9.1 are in, and the Shopping List feature is now live! Check it out below, and try it in your server!</p>
                                 </div>
                             </div>
 
                             <div className="flex items-center ml-2">
                                 <button
-                                    onClick={() => handleDismiss(42721)}
+                                    onClick={() => handleDismiss(42722)}
                                     className="bg-white hover:bg-gray-400 text-purple-800 py-2 px-4 bold font-semibold rounded inline-flex items-center max-h-9"
                                 >
                                     

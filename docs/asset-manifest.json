@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.378f03e9.chunk.css",
-    "main.js": "/static/js/main.bf7cf7a4.chunk.js",
-    "main.js.map": "/static/js/main.bf7cf7a4.chunk.js.map",
+    "main.css": "/static/css/main.c3315fe2.chunk.css",
+    "main.js": "/static/js/main.c86186de.chunk.js",
+    "main.js.map": "/static/js/main.c86186de.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.57316d18.js",
     "runtime-main.js.map": "/static/js/runtime-main.57316d18.js.map",
     "static/css/2.04404071.chunk.css": "/static/css/2.04404071.chunk.css",
@@ -12,24 +12,24 @@
     "static/js/3.60331c11.chunk.js.map": "/static/js/3.60331c11.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.04404071.chunk.css.map": "/static/css/2.04404071.chunk.css.map",
-    "static/css/main.378f03e9.chunk.css.map": "/static/css/main.378f03e9.chunk.css.map",
+    "static/css/main.c3315fe2.chunk.css.map": "/static/css/main.c3315fe2.chunk.css.map",
     "static/js/2.e4e0d34f.chunk.js.LICENSE.txt": "/static/js/2.e4e0d34f.chunk.js.LICENSE.txt",
     "static/media/bg+.bbe8a49d.png": "/static/media/bg+.bbe8a49d.png",
-    "static/media/App.scss": "/static/media/waves-stroked.36dda7ae.svg",
-    "static/media/copper_coin.dde7f495.svg": "/static/media/copper_coin.dde7f495.svg",
-    "static/media/gold_coin.6ee418dd.svg": "/static/media/gold_coin.6ee418dd.svg",
+    "static/media/App.scss": "/static/media/waves-stroked.c19c38ea.svg",
+    "static/media/copper_coin.1f48012e.svg": "/static/media/copper_coin.1f48012e.svg",
+    "static/media/gold_coin.54eea82e.svg": "/static/media/gold_coin.54eea82e.svg",
     "static/media/logo.f1026b73.jpg": "/static/media/logo.f1026b73.jpg",
     "static/media/money_and_coins_white.3a8b9cb7.png": "/static/media/money_and_coins_white.3a8b9cb7.png",
     "static/media/p.7ad451e2.png": "/static/media/p.7ad451e2.png",
-    "static/media/silver_coin.31c5fc00.svg": "/static/media/silver_coin.31c5fc00.svg",
+    "static/media/silver_coin.d789cf90.svg": "/static/media/silver_coin.d789cf90.svg",
     "static/media/sl+.3f3f08d2.png": "/static/media/sl+.3f3f08d2.png",
-    "static/media/WebTool.scss": "/static/media/waves.71c54541.svg"
+    "static/media/WebTool.scss": "/static/media/waves.01aa4270.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.57316d18.js",
     "static/css/2.04404071.chunk.css",
     "static/js/2.e4e0d34f.chunk.js",
-    "static/css/main.378f03e9.chunk.css",
-    "static/js/main.bf7cf7a4.chunk.js"
+    "static/css/main.c3315fe2.chunk.css",
+    "static/js/main.c86186de.chunk.js"
   ]
 }

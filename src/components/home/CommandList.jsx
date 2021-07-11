@@ -118,6 +118,24 @@ const CommandList = () => {
                             </div>
                         </Fade>
 
+
+                        <Fade bottom>
+                            <div className="text-white text-2xl xl:text-4xl xl:font-semibold pb-2 md:w-full">Upcoming</div>
+                            <div className="flex relative pl-2 pb-20 sm:items-center mt-3">
+                                <div className="flex-grow flex sm:items-center items-start flex-col sm:flex-row">
+                                    <div className="flex-grow mt-6 sm:mt-0">
+                                        <ul>
+                                            <li>
+                                                Support for rank 5 and 6 Shadowlands legendary crafting.
+                                            </li>
+                                            <li>
+                                                7-day and 30-day average price and market volume datapoints.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </Fade>
                         <Fade bottom>
                             <div className="text-white text-2xl xl:text-4xl xl:font-semibold pb-2 md:w-full">Tips and Tricks</div>
                             <div className="flex relative pl-2 pb-20 sm:items-center mt-3">
